@@ -1,6 +1,7 @@
 from Utility import *
 from models.insolation_single import *
 from models.latitude_stepping_GHE import *
+from models.oneD_GHE import *
 from models.zeroD import *
 from models.zeroD_GHE import *
 
@@ -48,6 +49,9 @@ elif selection == 5:
 
 elif selection == 6:
     print("1D EBM w/ Greenhouse effect")
+    fig, plt = oneD_GHE()
+    # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '1D EBM with Greenhouse Effect')
+    plt.show()
 
 elif selection == 7:
     print("Solar insolation on Eccentric orbit")

@@ -1,6 +1,7 @@
 from Utility import *
 from models.insolation_single import *
 from models.zeroD import *
+from models.zeroD_GHE import *
 
 print("Which model would you like to see?")
 print("0 - OD EBM")
@@ -18,7 +19,10 @@ selection = int(input())
 if selection == 0:
     print("0D EBM")
     t, T = zeroD_EBM()
-    plotGraph(t, T, '0D EBM without Greenhouse effect', 'time (years)', 'Surface temperature (K)', 'true')
+    fig, plt = plotGraph(t, T, '0D EBM without Greenhouse effect', 'time (years)', 'Surface temperature (K)', 'true')
+    # (fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM without Greenhouse Effect')
+
+    plt.show()
 
 elif selection == 1:
     print("OD EBM w/ eccentricity variation")
@@ -31,6 +35,12 @@ elif selection == 3:
 
 elif selection == 4:
     print("OD EBM w/ Greenhouse effect")
+    t, T = zeroD_GHE()
+    fig, plt = plotGraph(t, T, '0D EBM with Greenhouse Effect', 'time (years)', 'Surface temperature (K)', 'true')
+    plt.annotate(str(round(T[-1], 3)), (t[-1], T[-1]), xycoords='data', xytext=(t[-1] - 125, T[-1] - 20))
+    # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM with Greenhouse Effect')
+
+    plt.show()
 
 elif selection == 5:
     print("1D EBM")
@@ -46,7 +56,7 @@ elif selection == 7:
     fig, plt = plotGraph(t, L, 'Light insolation on an eccentric orbit (e = 0.01671)', 'time (days)',
                          'Light Insolation (W/m^2)', 'false')
 
-    savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', 'Light Insolation on an Eccentric Orbit')
+    # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', 'Light Insolation on an Eccentric Orbit')
     plt.show()
 
 elif selection == 8:

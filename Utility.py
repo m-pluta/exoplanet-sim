@@ -1,4 +1,7 @@
+import math
+
 import matplotlib.pyplot as plt
+
 
 def plotGraph(t, T, Title, x_axis, y_axis, celciusLine):
     fig = plt.figure()
@@ -19,6 +22,23 @@ def plotGraph(t, T, Title, x_axis, y_axis, celciusLine):
     plt.grid(b=True, which='major', color='black', linestyle='-', linewidth=0.5)
     plt.grid(b=True, which='minor', color='grey', linestyle=':', linewidth=0.2)
 
-    # Displaying plot
-    plt.show()
+    return fig, plt
 
+
+def savePlot(fig, filePath, fileName, dpi=1000):
+    # Saving plot locally
+    print('Saving to ' + fileName + '.png')
+    fig.savefig(filePath + fileName + '.png', dpi=dpi)
+    print('Plot saved to ' + fileName + '_2x.png')
+
+
+def au_to_meters(x):
+    return 149597870700 * x
+
+
+def meters_to_au(x):
+    return x / 149597870700
+
+
+def distance_of_planet_to_star(angle, R_planet, e):
+    return (R_planet * (1 - e ** 2)) / (1 + e * math.cos(angle))

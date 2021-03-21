@@ -1,4 +1,5 @@
 from Utility import *
+from models.insolation_single import *
 from models.zeroD import *
 
 print("Which model would you like to see?")
@@ -21,19 +22,35 @@ if selection == 0:
 
 elif selection == 1:
     print("OD EBM w/ eccentricity variation")
+
 elif selection == 2:
-    print("OD EBM w/ eccentricity variation")
+    print("OD EBM w/ eccentricity variation - Bar")
+
 elif selection == 3:
-    print("OD EBM w/ eccentricity variation")
+    print("OD EBM w/ eccentricity variation - Min/Max/Mean")
+
 elif selection == 4:
-    print("OD EBM w/ eccentricity variation")
+    print("OD EBM w/ Greenhouse effect")
+
 elif selection == 5:
-    print("OD EBM w/ eccentricity variation")
+    print("1D EBM")
+
 elif selection == 6:
-    print("OD EBM w/ eccentricity variation")
+    print("1D EBM w/ Greenhouse effect")
+
 elif selection == 7:
-    print("OD EBM w/ eccentricity variation")
+    print("Solar insolation on Eccentric orbit")
+    inputE = float(input("Eccentricity: "))
+
+    t, L = insolation_single(inputE)
+    fig, plt = plotGraph(t, L, 'Light insolation on an eccentric orbit (e = 0.01671)', 'time (days)',
+                         'Light Insolation (W/m^2)', 'false')
+
+    savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', 'Light Insolation on an Eccentric Orbit')
+    plt.show()
+
 elif selection == 8:
-    print("OD EBM w/ eccentricity variation")
+    print("Solar insolation on different eccentric orbits")
+
 elif selection == 9:
-    print("OD EBM w/ eccentricity variation")
+    print("Latitude stepping 1D EBM w/ Greenhouse Effect")

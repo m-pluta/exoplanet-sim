@@ -1,4 +1,5 @@
 from Utility import *
+from models.zeroD import *
 
 print("Which model would you like to see?")
 print("0 - OD EBM")

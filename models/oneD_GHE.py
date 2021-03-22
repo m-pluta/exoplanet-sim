@@ -51,7 +51,7 @@ def oneD_GHE():
     for lat in latitudes:  # Plots temps of each latitude
         plt.plot(t, lat['tempList'], label=str(lat['lat'][0]) + '-' + str(lat['lat'][1]) + '°')
     # Plots line for 0* Celsius
-    plt.plot([0, years], [273.15, 273.15], c='c', label='0°C', lw='0.7', linestyle='dashed')
+    plt.plot([0, years], [273.15, 273.15], c='c', label='0°C', lw='1.25', linestyle='dashed')
 
     plt.legend(loc="lower right", title='Latitudes', framealpha=1.0)
 

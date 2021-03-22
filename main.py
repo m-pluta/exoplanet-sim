@@ -1,6 +1,7 @@
 from Utility import *
 from models.insolation_single import *
 from models.latitude_stepping_GHE import *
+from models.oneD import *
 from models.oneD_GHE import *
 from models.zeroD import *
 from models.zeroD_GHE import *
@@ -46,9 +47,7 @@ elif selection == 3:
     plt.plot(eccentricities, mins, c='r', linewidth=0.75, label='Minimum')
     plt.plot(eccentricities, means, c='g', linewidth=0.75, label="Mean")
     plt.plot(eccentricities, maxs, c='b', linewidth=0.75, label='Maximum')
-    plt.show();
-
-
+    plt.show()
 
 elif selection == 4:
     print("OD EBM w/ Greenhouse effect")
@@ -61,6 +60,9 @@ elif selection == 4:
 
 elif selection == 5:
     print("1D EBM")
+    fig, plt = oneD()
+    # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '1D EBM without Greenhouse Effect')
+    plt.show()
 
 elif selection == 6:
     print("1D EBM w/ Greenhouse effect")

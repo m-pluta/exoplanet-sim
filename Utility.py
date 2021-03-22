@@ -8,7 +8,7 @@ def plotGraph(t, T, Title, x_axis, y_axis, celciusLine):
     plt.plot(t, T, c='r', linewidth=2.25)
 
     if celciusLine == 'true':
-        plt.plot([t[0], t[-1]], [273.15, 273.15], c='c', label='0°C', lw='0.7', linestyle='dashed')
+        plt.plot([t[0], t[-1]], [273.15, 273.15], c='c', label='0°C', lw='1.25', linestyle='dashed')
 
         plt.legend(loc="lower right", title='Extra lines:', framealpha=1.0)
 

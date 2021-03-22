@@ -89,7 +89,7 @@ def zeroD_e_bar():
         # print(str(round(tempE, 2)) + " - " + str(round(maxs[i] - mins[i], 3)))
 
     # Plots line for 0* Celsius
-    plt.plot([0, 1], [273.15, 273.15], c='r', label='0°C', lw='0.5', linestyle='dashed')
+    plt.plot([0, 1], [273.15, 273.15], c='r', label='0°C', lw='1.25', linestyle='dashed')
 
     plt.legend(loc="lower right", title='Extra lines:', framealpha=1.0)
 

@@ -1,5 +1,5 @@
 from Utility import *
-from models.insolation_single import *
+from models.insolation_multiple import *
 from models.latitude_stepping_GHE import *
 from models.oneD import *
 from models.oneD_GHE import *
@@ -83,6 +83,12 @@ elif selection == 7:
 
 elif selection == 8:
     print("Solar insolation on different eccentric orbits")
+
+    fig, plt = insolation_multiple()
+    # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', 'Solar insolation on different eccentric orbits')
+    plt.show()
+
+
 
 elif selection == 9:
     print("Latitude stepping 1D EBM w/ Greenhouse Effect")

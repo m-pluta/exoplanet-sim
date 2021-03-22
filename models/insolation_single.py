@@ -3,14 +3,14 @@ import math
 from Utility import distance_of_planet_to_star
 
 
-def insolation_single(inputE):
+def insolation_single(inputE=0.01671):
     #  Sources: Kepler's First Law: https://www.vanderbilt.edu/AnS/physics/astrocourses/ast201/keplerslaws_1.html
     #                               http://astronomy.nmsu.edu/nicole/teaching/ASTR505/lectures/lecture08/slide13.html#:~:text=The%20squares%20of%20the%20sidereal,square%20of%20its%20sidereal%20period.
 
     R_star = 0.00465047  # Radius of star (AU)
     R_planet = 1  # Distance of planet from body it is orbiting  (AU)
     T_star = 5778  # (K)
-    e = 0.01671  # Eccentricity of planet
+    e = inputE
     sigma = 5.67E-8  # Boltzmann constant
     timeStep = 1E-3  # fraction of period acts as timeStep
 
@@ -18,7 +18,6 @@ def insolation_single(inputE):
     period = math.pow(R_planet, 1.5) * 365.25
     Power_output = (4 * math.pi * R_star ** 2 * sigma * T_star ** 4) / (4 * math.pi * R_planet ** 2)
 
-    e = inputE
 
     t = []
     L = []

@@ -73,10 +73,18 @@ def zeroD_e_bar():
     for i in range(0, 99):
         tempE += 0.01
 
-        plt.bar(round(tempE, 2), round(maxs[i] - mins[i], 3), width=0.006, bottom=round(mins[i], 3), align='center',
+        # Height minimum
+        minHeight = 5
+        height = round(maxs[i] - mins[i], 3)
+        if height < minHeight:
+            height = minHeight
+
+        barWidth = 0.006  # Set to 0.006 for default or 0.01 for connected bars
+
+        plt.bar(round(tempE, 2), height, width=barWidth, bottom=round(mins[i], 3), align='center',
                 color='c')
 
-        print(str(round(tempE, 2)) + " - " + str(round(maxs[i] - mins[i], 3)))
+        # print(str(round(tempE, 2)) + " - " + str(round(maxs[i] - mins[i], 3)))
 
     # Plots line for 0* Celsius
     plt.plot([0, 1], [273.15, 273.15], c='r', label='0°C', lw='0.5', linestyle='dashed')

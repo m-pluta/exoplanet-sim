@@ -34,6 +34,7 @@ elif selection == 2:
     print("OD EBM w/ eccentricity variation - Bar")
     fig, plt = zeroD_e_bar()
 
+    # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM with eccentricity variation', 3200)
     plt.show()
 
 elif selection == 3:

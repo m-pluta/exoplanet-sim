@@ -1,6 +1,4 @@
 from Utility import distance_of_planet_to_star
-
-
 def zeroD_e_bar():
     import matplotlib.pyplot as plt
     import math
@@ -29,7 +27,7 @@ def zeroD_e_bar():
     maxs = []
     eccentricities = []
 
-    for j in range(1, 100):  # Iterating through each eccentricity from 0.01 to 0.9
+    for j in range(1, 100):  # Iterating through each eccentricity from 0.01 to 0.99
         e += 0.01
         eccentricities.append(e)
 
@@ -74,7 +72,26 @@ def zeroD_e_bar():
     tempE = 0
     for i in range(0, 99):
         tempE += 0.01
-        plt.plot([round(tempE, 2), round(tempE, 2)], [round(mins[i], 3), round(maxs[i], 3)], c='c',
-                 lw='2', )  # Displaying a bar for each eccentricity showing the variation in temperature
+
+        plt.bar(round(tempE, 2), round(maxs[i] - mins[i], 3), width=0.006, bottom=round(mins[i], 3), align='center',
+                color='c')
+
         print(str(round(tempE, 2)) + " - " + str(round(maxs[i] - mins[i], 3)))
+
+    # Plots line for 0* Celsius
+    plt.plot([0, 1], [273.15, 273.15], c='r', label='0°C', lw='0.5', linestyle='dashed')
+
+    plt.legend(loc="lower right", title='Extra lines:', framealpha=1.0)
+
+    # Adding labels for title and axes
+    fig.suptitle('0D EBM with eccentricity variation', fontsize=12)
+    plt.xlabel('Eccentricity (0.01-0.99)', fontsize=9)
+    plt.ylabel('Mean Surface temperature (K)', fontsize=9)
+    plt.axis([-0.05, 1.05, 200, 2700])
+    plt.minorticks_on()  # minor ticks
+
+    # Drawing major & minor gridlines
+    plt.grid(b=True, which='major', color='black', linestyle='-', linewidth=0.5)
+    plt.grid(b=True, which='minor', color='grey', linestyle=':', linewidth=0.2)
+
     return fig, plt

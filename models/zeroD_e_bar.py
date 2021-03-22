@@ -1,8 +1,11 @@
-from Utility import distance_of_planet_to_star
-def zeroD_e_bar():
-    import matplotlib.pyplot as plt
-    import math
+import math
 
+import matplotlib.pyplot as plt
+
+from Utility import distance_of_planet_to_star
+
+
+def zeroD_e_bar():
     waterDepth = 400  # (m)
     albedo = 0.3  # how much light gets reflected by atmosphere
     epsilon = 1  # how good of a blackbody the body is
@@ -67,7 +70,6 @@ def zeroD_e_bar():
         heat_in = []
         print(str(round(e, 2)))
 
-    fig = plt.figure()
 
     tempE = 0
     for i in range(0, 99):
@@ -90,6 +92,8 @@ def zeroD_e_bar():
     plt.plot([0, 1], [273.15, 273.15], c='r', label='0°C', lw='0.5', linestyle='dashed')
 
     plt.legend(loc="lower right", title='Extra lines:', framealpha=1.0)
+
+    fig = plt.figure()
 
     # Adding labels for title and axes
     fig.suptitle('0D EBM with eccentricity variation', fontsize=12)

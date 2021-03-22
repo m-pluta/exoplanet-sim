@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 
 def plotGraph(t, T, Title, x_axis, y_axis, celciusLine):
-    fig = plt.figure()
+    fig = plt.figure(Title)
     plt.plot(t, T, c='r', linewidth=2.25)
 
     if celciusLine == 'true':

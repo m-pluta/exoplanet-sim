@@ -46,7 +46,7 @@ def oneD_GHE():
 
     print(latitudes[0]['tempList'][-1] - 273.15)
 
-    fig = plt.figure()
+    fig = plt.figure("1D EBM with Greenhouse Effect")
 
     for lat in latitudes:  # Plots temps of each latitude
         plt.plot(t, lat['tempList'], label=str(lat['lat'][0]) + '-' + str(lat['lat'][1]) + '°')

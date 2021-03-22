@@ -5,6 +5,7 @@ from models.oneD_GHE import *
 from models.zeroD import *
 from models.zeroD_GHE import *
 from models.zeroD_e_bar import *
+from models.zeroD_e_mmm import *
 
 print("Which model would you like to see?")
 print("0 - OD EBM")
@@ -39,6 +40,15 @@ elif selection == 2:
 
 elif selection == 3:
     print("OD EBM w/ eccentricity variation - Min/Max/Mean")
+    eccentricities, mins, means, maxs = zeroD_e_mmm()
+
+    fig = plt.figure("OD EBM w/ eccentricity variation - Min/Max/Mean")
+    plt.plot(eccentricities, mins, c='r', linewidth=0.75, label='Minimum')
+    plt.plot(eccentricities, means, c='g', linewidth=0.75, label="Mean")
+    plt.plot(eccentricities, maxs, c='b', linewidth=0.75, label='Maximum')
+    plt.show();
+
+
 
 elif selection == 4:
     print("OD EBM w/ Greenhouse effect")

@@ -4,6 +4,7 @@ from models.latitude_stepping_GHE import *
 from models.oneD_GHE import *
 from models.zeroD import *
 from models.zeroD_GHE import *
+from models.zeroD_e_bar import *
 
 print("Which model would you like to see?")
 print("0 - OD EBM")
@@ -31,6 +32,9 @@ elif selection == 1:
 
 elif selection == 2:
     print("OD EBM w/ eccentricity variation - Bar")
+    fig, plt = zeroD_e_bar()
+
+    plt.show()
 
 elif selection == 3:
     print("OD EBM w/ eccentricity variation - Min/Max/Mean")

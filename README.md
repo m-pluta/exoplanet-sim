@@ -1,2 +1,5 @@
 # CREST-Habitable-Exoplanets
-Python scripts for all planetary models
+# Author: Michal Pluta
+
+Python scripts for all planetary models for CREST award
+

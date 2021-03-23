@@ -5,6 +5,7 @@ from models.oneD import *
 from models.oneD_GHE import *
 from models.zeroD import *
 from models.zeroD_GHE import *
+from models.zeroD_e import *
 from models.zeroD_e_bar import *
 from models.zeroD_e_mmm import *
 
@@ -31,6 +32,12 @@ if selection == 0:
 
 elif selection == 1:
     print("OD EBM w/ eccentricity variation")
+
+    t, T = zeroD_e(0.4)
+    fig, plt = plotGraph(t, T, '0D EBM with eccentricity variation', 'time (years)', 'Surface temperature (K)', 'true')
+    # (fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM with eccentricity variation')
+
+    plt.show()
 
 elif selection == 2:
     print("OD EBM w/ eccentricity variation - Bar")

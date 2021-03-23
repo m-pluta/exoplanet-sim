@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 def plotGraph(t, T, Title, x_axis, y_axis, celciusLine):
     fig = plt.figure(Title)
-    plt.plot(t, T, c='r', linewidth=2.25)
+    plt.plot(t, T, c='r', linewidth=1.75)
 
     if celciusLine == 'true':
         plt.plot([t[0], t[-1]], [273.15, 273.15], c='c', label='0°C', lw='1.25', linestyle='dashed')

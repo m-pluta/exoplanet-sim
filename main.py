@@ -95,8 +95,6 @@ elif selection == 8:
     # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', 'Solar insolation on different eccentric orbits')
     plt.show()
 
-
-
 elif selection == 9:
     print("Latitude stepping 1D EBM w/ Greenhouse Effect")
 

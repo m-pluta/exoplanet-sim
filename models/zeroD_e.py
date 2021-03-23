@@ -3,7 +3,7 @@ import math
 from Utility import distance_of_planet_to_star
 
 
-def zeroD_e(inputE=0.01671):
+def zeroD_e():
     waterDepth = 400  # (m)
     albedo = 0.3  # how much light gets reflected by atmosphere
     epsilon = 0.77  # how good of a blackbody the body is
@@ -14,7 +14,7 @@ def zeroD_e(inputE=0.01671):
     R_star = 0.00465047  # Radius of star (AU)
     d_planet = 1  # Distance of planet from body it is orbiting  (AU)
     T_star = 5778  # Surface Temperature of star (K)
-    e = inputE  # Eccentricity of planet
+    e = float(input("Eccentricity: "))  # Eccentricity of planet
     Period_Fractions = 10000  # number of fractions of period
 
     # Init

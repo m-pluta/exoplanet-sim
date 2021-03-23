@@ -33,7 +33,7 @@ if selection == 0:
 elif selection == 1:
     print("OD EBM w/ eccentricity variation")
 
-    t, T = zeroD_e(0.4)
+    t, T = zeroD_e()
     fig, plt = plotGraph(t, T, '0D EBM with eccentricity variation', 'time (years)', 'Surface temperature (K)', 'true')
     # (fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM with eccentricity variation')
 
@@ -79,9 +79,8 @@ elif selection == 6:
 
 elif selection == 7:
     print("Solar insolation on Eccentric orbit")
-    inputE = float(input("Eccentricity: "))
 
-    t, L = insolation_single(inputE)
+    t, L = insolation_single()
     fig, plt = plotGraph(t, L, 'Light insolation on an eccentric orbit (e = 0.01671)', 'time (days)',
                          'Light Insolation (W/m^2)', 'false')
 

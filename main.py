@@ -26,7 +26,7 @@ if selection == 0:
     print("0D EBM")
     t, T = zeroD_EBM()
     fig, plt = plotGraph(t, T, '0D EBM without Greenhouse effect', 'time (years)', 'Surface temperature (K)', 'true')
-    # (fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM without Greenhouse Effect')
+    # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM without Greenhouse Effect')
 
     plt.show()
 
@@ -35,7 +35,7 @@ elif selection == 1:
 
     t, T = zeroD_e()
     fig, plt = plotGraph(t, T, '0D EBM with eccentricity variation', 'time (years)', 'Surface temperature (K)', 'true')
-    # (fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM with eccentricity variation')
+    # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM with eccentricity variation')
 
     plt.show()
 
@@ -54,6 +54,8 @@ elif selection == 3:
     plt.plot(eccentricities, mins, c='r', linewidth=0.75, label='Minimum')
     plt.plot(eccentricities, means, c='g', linewidth=0.75, label="Mean")
     plt.plot(eccentricities, maxs, c='b', linewidth=0.75, label='Maximum')
+
+    # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', 'OD EBM w/ eccentricity variation - Min/Max/Mean'. 3200)
     plt.show()
 
 elif selection == 4:

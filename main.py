@@ -48,12 +48,7 @@ elif selection == 2:
 
 elif selection == 3:
     print("OD EBM w/ eccentricity variation - Min/Max/Mean")
-    eccentricities, mins, means, maxs = zeroD_e_mmm()
-
-    fig = plt.figure("OD EBM w/ eccentricity variation - Min/Max/Mean")
-    plt.plot(eccentricities, mins, c='r', linewidth=0.75, label='Minimum')
-    plt.plot(eccentricities, means, c='g', linewidth=0.75, label="Mean")
-    plt.plot(eccentricities, maxs, c='b', linewidth=0.75, label='Maximum')
+    fig, plt = zeroD_e_mmm()
 
     # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', 'OD EBM w/ eccentricity variation - Min/Max/Mean'. 3200)
     plt.show()

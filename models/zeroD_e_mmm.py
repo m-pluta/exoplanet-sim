@@ -1,5 +1,7 @@
 import math
 
+import matplotlib.pyplot as plt
+
 from Utility import distance_of_planet_to_star
 
 
@@ -74,4 +76,22 @@ def zeroD_e_mmm():
 
         print(str(round(e, 2)))
 
-    return eccentricities, mins, means, maxs
+    fig = plt.figure("OD EBM w/ eccentricity variation - Min/Max/Mean")
+    plt.plot(eccentricities, mins, c='r', linewidth=0.75, label='Minimum')
+    plt.plot(eccentricities, means, c='g', linewidth=0.75, label="Mean")
+    plt.plot(eccentricities, maxs, c='b', linewidth=0.75, label='Maximum')
+
+    plt.plot([0.01, 0.99], [273.15, 273.15], c='c', label='0°C', lw='1.25', linestyle='dashed')
+    plt.legend(loc="upper left", title='Extra lines:', framealpha=1.0)
+
+    # Adding labels for title and axes
+    fig.suptitle("OD EBM w/ eccentricity variation - Min/Max/Mean", fontsize=12)
+    plt.xlabel("Eccentricity", fontsize=9)
+    plt.ylabel("Surface Temperature (K)", fontsize=9)
+    plt.minorticks_on()  # minor ticks
+
+    # Drawing major & minor gridlines
+    plt.grid(b=True, which='major', color='black', linestyle='-', linewidth=0.5)
+    plt.grid(b=True, which='minor', color='grey', linestyle=':', linewidth=0.2)
+
+    return fig, plt

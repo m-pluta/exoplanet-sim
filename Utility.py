@@ -80,5 +80,13 @@ def generate_heat_in(e, periodFractions, d_planet, Power_Output, albedo):
     return heat_in
 
 
+def generateEccentricityList(start, end, step):
+    e = [start]
+    while e[-1] + step <= end:
+        e.append(e[-1] + step)
+
+    return e
+
+
 def distance_of_planet_to_star(angle, semi_major_axis, e):
     return (semi_major_axis * (1 - e ** 2)) / (1 + e * math.cos(angle))

@@ -29,9 +29,9 @@ if selection == 0:
     savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM')
 
 elif selection == 1:
-    print("OD EBM w/ eccentricity variation")
+    print("0D EBM with eccentricity variation")
 
-    fig = zeroD_e('0D EBM with eccentricity but without Greenhouse effect')
+    fig = zeroD_e('0D EBM with eccentricity variation')
     plt.show()
     savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM with eccentricity variation')
 

@@ -11,11 +11,11 @@ from Utility import plotCelciusLine
 def zeroD_e(plotTitle):
     # Independent Variables
     waterDepth = 400  # (m)
-    albedo = 0.3  # how much light gets reflected by atmosphere
-    epsilon = 0.77  # how good of a blackbody the body is
-    R_star = 0.00465047  # Radius of star (AU)
-    d_planet = 1  # Distance of planet from body it is orbiting  (AU)
-    T_star = 5778  # Surface Temperature of star (K)
+    albedo = c.albedo_Earth  # how much light gets reflected by atmosphere
+    epsilon = c.epsilon_Earth  # how good of a blackbody the body is
+    R_star = c.R_Sun  # Radius of star (AU)
+    d_planet = c.d_Earth  # Distance of planet from body it is orbiting  (AU)
+    T_star = c.T_Sun  # Surface Temperature of star (K)
     e = float(input("Eccentricity (0.01671): "))  # Eccentricity of planet
     periodFractions = 10000  # number of fractions of period
 

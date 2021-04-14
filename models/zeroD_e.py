@@ -38,7 +38,6 @@ def zeroD_e(plotTitle):
 
         heat_content += (heat_in[i % periodFractions] - heat_out) * period / periodFractions * c.SiY
         T.append(heat_content / heat_capacity)  # (K)
-        # print(t[-1], T[-1])  # For Debugging
 
     # Plotting data
     fig = plt.figure(plotTitle)

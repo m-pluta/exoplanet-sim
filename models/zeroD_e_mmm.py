@@ -2,10 +2,12 @@ import math
 
 import matplotlib.pyplot as plt
 
+from Utility import beautifyPlot
 from Utility import distance_of_planet_to_star
+from Utility import plotCelciusLine
 
 
-def zeroD_e_mmm():
+def zeroD_e_mmm(plotTitle):
     waterDepth = 400  # (m)
     albedo = 0.3  # how much light gets reflected by atmosphere
     epsilon = 1  # how good of a blackbody the body is
@@ -76,22 +78,15 @@ def zeroD_e_mmm():
 
         print(str(round(e, 2)))
 
-    fig = plt.figure("OD EBM w/ eccentricity variation - Min/Max/Mean")
+    # Plotting data
+    fig = plt.figure(plotTitle)
+
     plt.plot(eccentricities, mins, c='r', linewidth=0.75, label='Minimum')
     plt.plot(eccentricities, means, c='g', linewidth=0.75, label="Mean")
     plt.plot(eccentricities, maxs, c='b', linewidth=0.75, label='Maximum')
 
-    plt.plot([0.01, 0.99], [273.15, 273.15], c='c', label='0°C', lw='1.25', linestyle='dashed')
-    plt.legend(loc="upper left", title='Extra lines:', framealpha=1.0)
+    # Modifying Visual aspect of plot
+    fig = beautifyPlot(fig, plotTitle, 'Eccentricity', 'Surface temperature (K)')
+    fig = plotCelciusLine(fig, min(eccentricities), max(eccentricities))
 
-    # Adding labels for title and axes
-    fig.suptitle("OD EBM w/ eccentricity variation - Min/Max/Mean", fontsize=12)
-    plt.xlabel("Eccentricity", fontsize=9)
-    plt.ylabel("Surface Temperature (K)", fontsize=9)
-    plt.minorticks_on()  # minor ticks
-
-    # Drawing major & minor gridlines
-    plt.grid(b=True, which='major', color='black', linestyle='-', linewidth=0.5)
-    plt.grid(b=True, which='minor', color='grey', linestyle=':', linewidth=0.2)
-
-    return fig, plt
+    return fig

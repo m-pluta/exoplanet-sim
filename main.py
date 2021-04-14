@@ -24,6 +24,7 @@ selection = int(input())
 
 if selection == 0:
     print("0D EBM")
+
     fig = zeroD_EBM('0D EBM')
     plt.show()
     savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM')
@@ -36,17 +37,18 @@ elif selection == 1:
     savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM with eccentricity variation')
 
 elif selection == 2:
-    print("OD EBM w/ eccentricity variation - Bar")
+    print("OD EBM with eccentricity variation - Bar")
+
     fig = zeroD_e_bar('OD EBM w/ eccentricity variation - Bar')
     plt.show()
-    # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM with eccentricity variation', 3200)
+    savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM with eccentricity variation - Bar', 3200)
 
 elif selection == 3:
-    print("OD EBM w/ eccentricity variation - Min/Max/Mean")
-    fig, plt = zeroD_e_mmm()
+    print("OD EBM with eccentricity variation - Min/Max/Mean")
 
-    # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', 'OD EBM w/ eccentricity variation - Min/Max/Mean'. 3200)
+    fig = zeroD_e_mmm("OD EBM with eccentricity variation - Min/Max/Mean")
     plt.show()
+    savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', 'OD EBM with eccentricity variation - Min/Max/Mean', 3200)
 
 elif selection == 4:
     print("OD EBM w/ Greenhouse effect")

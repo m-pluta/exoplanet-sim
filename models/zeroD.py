@@ -3,13 +3,14 @@ import matplotlib.pyplot as plt
 import c
 from Utility import beautifyPlot
 from Utility import plotCelciusLine
+from Utility import solarOutput
 
 
 def zeroD_EBM(plotTitle):
     # Independent variables
     timeStep = 0.2  # (y)
     waterDepth = 4000  # (m)
-    L = 1361  # (W / m^2)
+    L = solarOutput(c.R_Sun, c.T_Sun, c.d_Earth)
     albedo = 0.3  # how much light gets reflected by atmosphere
     epsilon = 0.77  # how good of a blackbody the body is
 

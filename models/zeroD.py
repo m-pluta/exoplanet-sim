@@ -29,7 +29,7 @@ def zeroD_EBM():
     fig = plt.figure(plotTitle)
     plt.plot(t, T, c='r', linewidth=1.75)
 
-    fig, plt = beautifyPlot(fig, plt, plotTitle, 'time (years)', 'Surface temperature (K)')
-    fig, plt = plotCelciusLine(fig, plt, t[0], t[-1])
+    fig = beautifyPlot(fig, plotTitle, 'time (years)', 'Surface temperature (K)')
+    fig = plotCelciusLine(fig, t[0], t[-1])
 
-    return fig, plt
+    return fig

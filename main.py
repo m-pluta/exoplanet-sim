@@ -24,7 +24,7 @@ selection = int(input())
 if selection == 0:
     print("0D EBM")
 
-    fig, plt = zeroD_EBM()
+    fig = zeroD_EBM()
     # # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM without Greenhouse Effect')
     #
     plt.show()

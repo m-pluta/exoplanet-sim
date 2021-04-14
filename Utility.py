@@ -1,5 +1,7 @@
 import math
 
+import matplotlib.pyplot as plt
+
 
 # def plotGraph(t, T, Title, x_axis, y_axis, celciusLine):
 #     fig = plt.figure(Title)
@@ -23,7 +25,7 @@ import math
 #     return fig, plt
 
 
-def beautifyPlot(fig, plt, Title, x_axis, y_axis):
+def beautifyPlot(fig, Title, x_axis, y_axis):
     # Adding labels for title and axes
     fig.suptitle(Title, fontsize=12)
     plt.xlabel(x_axis, fontsize=9)
@@ -34,12 +36,12 @@ def beautifyPlot(fig, plt, Title, x_axis, y_axis):
     plt.grid(b=True, which='major', color='black', linestyle='-', linewidth=0.5)
     plt.grid(b=True, which='minor', color='grey', linestyle=':', linewidth=0.2)
 
-    return fig, plt
+    return fig
 
 
-def plotCelciusLine(fig, plt, t1, t2):
+def plotCelciusLine(fig, t1, t2):
     plt.plot([t1, t2], [273.15, 273.15], c='c', label='0°C', lw='1.25', linestyle='dashed')
-    return fig, plt
+    return fig
 
 
 def savePlot(fig, filePath, fileName, dpi=1000):

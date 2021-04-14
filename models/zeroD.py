@@ -12,8 +12,8 @@ def zeroD_EBM(plotTitle):
     timeStep = 0.2  # (y)
     waterDepth = 4000  # (m)
     L = solarOutput(c.R_Sun, c.T_Sun, c.d_Earth)
-    albedo = 0.3  # how much light gets reflected by atmosphere
-    epsilon = 0.77  # how good of a blackbody the body is
+    albedo = c.albedo_Earth  # how much light gets reflected by atmosphere
+    epsilon = c.epsilonA_Earth  # how good of a blackbody the body is
 
     # Initialisation
     heat_capacity = waterDepth * 1000 * 4200  # (J / K m^2)

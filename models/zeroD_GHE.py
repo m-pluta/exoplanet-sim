@@ -4,34 +4,36 @@ import c
 from Utility import addLegend
 from Utility import beautifyPlot
 from Utility import plotCelciusLine
+from Utility import solarOutput
 
 
 def zeroD_GHE(plotTitle):
     # Independent Variables
     timeStep = 0.1  # years
     waterDepth = 4000  # metres
-    L = 1361  # W/m^2
-    albedo = 0.3
-    epsilonS = 1.0
-    epsilonA = 0.77
-    heatCapacity = waterDepth * 4.2E6  # JK/m^2
-    FluxIn = L * (1 - albedo) / 4  # W/m^2
+    L = solarOutput(c.R_Sun, c.T_Sun, c.d_Earth)
+    albedo = c.albedo_Earth
+    epsilonS = c.epsilonS_Earth
+    epsilonA = c.epsilonA_Earth
 
     # Declaring variables and initialisation
+    heatCapacity = waterDepth * 4.2E6  # JK/m^2
+    heat_in = L * (1 - albedo) / 4  # W/m^2
     t = [0]
     T = [0]  # K
-    heatContent = 0  # J/m^2
-    FluxOut = 0  # W/m^2
-    FluxNet = FluxIn - FluxOut
+    net_heat = heat_in
 
-    years = 1500  # Arbitrary value
-    for i in range(1, int(years / timeStep)):
+    heatContent = 0  # J/m^2
+    years = int(input('Number of years (1500): '))
+    for i in range(int(years / timeStep)):
         # tempA = ((epsilonS*sigma*T[-1]**4-(1-epsilonA)*epsilonS*sigma*T[-1]**4)/(2*sigma*epsilonA))**0.25
-        tempA = (0.5 * epsilonS * (T[-1] ** 4)) ** 0.25  # Simplified equation
-        heatContent += FluxNet * c.SiY * timeStep
+        temp_atmosphere = (0.5 * epsilonS * (T[-1] ** 4)) ** 0.25  # Simplified equation
+
+        heatContent += net_heat * c.SiY * timeStep
         T.append(heatContent / heatCapacity)
-        FluxOut = (1 - epsilonA) * (epsilonS * c.sigma * T[-1] ** 4) + (epsilonA * c.sigma * tempA ** 4)
-        FluxNet = FluxIn - FluxOut
+
+        heat_out = (1 - epsilonA) * (epsilonS * c.sigma * T[-1] ** 4) + (epsilonA * c.sigma * temp_atmosphere ** 4)
+        net_heat = heat_in - heat_out
 
         t.append(t[-1] + timeStep)
 

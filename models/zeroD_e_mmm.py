@@ -15,7 +15,7 @@ def zeroD_e_mmm(plotTitle):
     # Independent Variables
     waterDepth = 400  # (m)
     albedo = c.albedo_Earth  # how much light gets reflected by atmosphere
-    epsilon = c.epsilon_Earth  # how good of a blackbody the body is
+    epsilon = c.epsilonA_Earth  # how good of a blackbody the body is
 
     R_star = c.R_Sun  # Radius of star (AU)
     d_planet = c.d_Earth  # Distance of planet from body it is orbiting  (AU)

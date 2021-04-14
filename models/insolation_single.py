@@ -38,6 +38,6 @@ def insolation_single(plotTitle):
     plt.plot(t, L, c='r', linewidth=1.75)
 
     # Modifying Visual aspect of plot
-    fig = beautifyPlot(fig, plotTitle, 'time (days)', 'Light Insolation (W/m^2)')
+    fig = beautifyPlot(fig, plotTitle + ' (e=' + str(e) + ')', 'time (days)', 'Light Insolation (W/m^2)')
 
     return fig

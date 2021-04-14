@@ -66,9 +66,9 @@ elif selection == 5:
 
 elif selection == 6:
     print("1D EBM w/ Greenhouse effect")
-    fig, plt = oneD_GHE()  # TODO
-    # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '1D EBM with Greenhouse Effect')
+    fig = oneD_GHE('1D EBM with Greenhouse effect')  # TODO
     plt.show()
+    savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '1D EBM with Greenhouse Effect')
 
 elif selection == 7:
     print("Solar insolation on Eccentric orbit")

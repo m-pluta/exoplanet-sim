@@ -1,7 +1,11 @@
-def oneD_GHE():
-    import matplotlib.pyplot as plt
-    import math
+import math
 
+import matplotlib.pyplot as plt
+
+from Utility import beautifyPlot, plotCelciusLine, addLegend
+
+
+def oneD_GHE(plotTitle):
     # Constants
     timeStep = 0.1  # years
     waterDepth = 4000  # m
@@ -44,26 +48,14 @@ def oneD_GHE():
             lat['tempList'].append(lat['heatContent'] / heatCapacity)
         t.append(t[-1] + timeStep)
 
-    print(latitudes[0]['tempList'][-1] - 273.15)
-
     fig = plt.figure("1D EBM with Greenhouse Effect")
 
     for lat in latitudes:  # Plots temps of each latitude
         plt.plot(t, lat['tempList'], label=str(lat['lat'][0]) + '-' + str(lat['lat'][1]) + '°')
-    # Plots line for 0* Celsius
-    plt.plot([0, years], [273.15, 273.15], c='c', label='0°C', lw='1.25', linestyle='dashed')
 
-    plt.legend(loc="lower right", title='Latitudes', framealpha=1.0)
+    # Modifying Visual aspect of plot
+    fig = beautifyPlot(fig, plotTitle, 'time (years)', 'Surface temperature (K)')
+    fig = plotCelciusLine(fig, 0, years)
+    fig = addLegend(fig, title='Latitudes: ')
 
-    # Adding labels for title and axes
-    fig.suptitle('1D EBM with Greenhouse Effect', fontsize=12)
-    plt.xlabel('time (years)', fontsize=9)
-    plt.ylabel('Surface Temperature (K)', fontsize=9)
-    plt.axis([0, 25000, 0, 350])  # Specifying range for axes
-    plt.minorticks_on()  # minor ticks
-
-    # Drawing major & minor gridlines
-    plt.grid(b=True, which='major', color='black', linestyle='-', linewidth=0.5)
-    plt.grid(b=True, which='minor', color='grey', linestyle=':', linewidth=0.2)
-
-    return fig, plt
+    return fig

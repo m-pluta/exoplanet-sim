@@ -4,14 +4,14 @@ import c
 from Utility import addLegend
 from Utility import beautifyPlot
 from Utility import plotCelciusLine
-from Utility import solarOutput
+from Utility import solarConstant
 
 
 def zeroD_EBM(plotTitle):
     # Independent variables
     timeStep = 0.2  # (y)
     waterDepth = 4000  # (m)
-    L = solarOutput(c.R_Sun, c.T_Sun, c.d_Earth)
+    L = solarConstant(c.R_Sun, c.T_Sun, c.d_Earth)
     albedo = c.albedo_Earth  # how much light gets reflected by atmosphere
     epsilon = c.epsilonA_Earth  # how good of a blackbody the body is
 

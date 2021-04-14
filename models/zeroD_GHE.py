@@ -4,14 +4,14 @@ import c
 from Utility import addLegend
 from Utility import beautifyPlot
 from Utility import plotCelciusLine
-from Utility import solarOutput
+from Utility import solarConstant
 
 
 def zeroD_GHE(plotTitle):
     # Independent Variables
     timeStep = 0.1  # years
     waterDepth = 4000  # metres
-    L = solarOutput(c.R_Sun, c.T_Sun, c.d_Earth)
+    L = solarConstant(c.R_Sun, c.T_Sun, c.d_Earth)
     albedo = c.albedo_Earth
     epsilonS = c.epsilonS_Earth
     epsilonA = c.epsilonA_Earth

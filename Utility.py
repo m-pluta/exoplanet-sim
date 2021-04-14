@@ -70,7 +70,7 @@ def meters_to_au(x):
     return x / 149597870700
 
 
-def solarOutput(R_star, T_star, d_planet):
+def solarConstant(R_star, T_star, d_planet):
     return (4 * math.pi * R_star ** 2 * c.sigma * T_star ** 4) / (4 * math.pi * d_planet ** 2)
 
 

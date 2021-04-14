@@ -7,6 +7,7 @@ from Utility import addLegend
 from Utility import beautifyPlot
 from Utility import generate_heat_in
 from Utility import plotCelciusLine
+from Utility import solarConstant
 
 
 def zeroD_e(plotTitle):
@@ -23,7 +24,7 @@ def zeroD_e(plotTitle):
     # Initialisation
     heat_capacity = waterDepth * 1000 * 4200  # (J / K m^2)
     period = math.pow(d_planet, 1.5)  # Period of planet's orbit (years)
-    Power_output = (4 * math.pi * R_star ** 2 * c.sigma * T_star ** 4) / (4 * math.pi * d_planet ** 2)  # Power output of star (Watts)
+    Power_output = solarConstant(c.R_Sun, c.T_Sun, c.d_Earth)  # Power output of star (Watts)
     t = [0]
     T = [0]
     heat_in = generate_heat_in(e, periodFractions, d_planet, Power_output, albedo)

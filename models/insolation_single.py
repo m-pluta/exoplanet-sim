@@ -3,7 +3,7 @@ import math
 import matplotlib.pyplot as plt
 
 import c
-from Utility import beautifyPlot, solarOutput
+from Utility import beautifyPlot, solarConstant
 from Utility import distance_of_planet_to_star
 
 
@@ -18,9 +18,9 @@ def insolation_single(plotTitle):
     periodFractions = 1000  # fraction of period acts as timeStep
     e = float(input("Eccentricity: "))
 
-    # Init
+    # Initialisation
     period = math.pow(d_planet, 1.5) * 365.25
-    Power_output = solarOutput(R_star, T_star, d_planet)
+    Power_output = solarConstant(R_star, T_star, d_planet)
 
     t = []
     L = []

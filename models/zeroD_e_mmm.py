@@ -8,7 +8,7 @@ from Utility import beautifyPlot
 from Utility import generateEccentricityList
 from Utility import generate_heat_in
 from Utility import plotCelciusLine
-from Utility import solarOutput
+from Utility import solarConstant
 
 
 def zeroD_e_mmm(plotTitle):
@@ -25,7 +25,7 @@ def zeroD_e_mmm(plotTitle):
     # Global Initialisation
     heat_capacity = waterDepth * 1000 * 4200  # (J / K m^2)
     period = math.pow(d_planet, 1.5)  # Period of planet's orbit (years)
-    Power_output = solarOutput(R_star, T_star, d_planet)  # incidentPower from star (W)
+    Power_output = solarConstant(R_star, T_star, d_planet)  # incidentPower from star (W)
 
     eccentricities = generateEccentricityList(0.5, 0.99, 0.01)
     mins = []

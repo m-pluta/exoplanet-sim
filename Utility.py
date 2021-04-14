@@ -14,6 +14,8 @@ import c
 #
 #         plt.legend(loc="lower right", title='Extra lines:', framealpha=1.0)
 #
+#     plt.annotate(str(round(T[-1], 3)), (t[-1], T[-1]), xycoords='data', xytext=(t[-1] - 125, T[-1] - 20))
+#
 #     # Adding labels for title and axes
 #     fig.suptitle(Title, fontsize=12)
 #     plt.xlabel(x_axis, fontsize=9)
@@ -80,6 +82,7 @@ def generate_heat_in(e, periodFractions, d_planet, Power_Output, albedo):
         theta = (i / periodFractions) * 2 * math.pi  # Calculating angle in orbit
         r = distance_of_planet_to_star(theta, d_planet, e)  # Applying Kepler's First Law to find r
         L = Power_Output / (r / d_planet) ** 2  # Calculating insolation based on distance from star relative to semi major axis
+        print(L)
         heat_in.append((L * (1 - albedo)) / 4)
 
     return heat_in

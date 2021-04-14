@@ -57,13 +57,6 @@ elif selection == 4:
     plt.show()
     savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM with Greenhouse Effect')
 
-    # t, T = zeroD_GHE()
-    # fig, plt = plotGraph(t, T, '0D EBM with Greenhouse Effect', 'time (years)', 'Surface temperature (K)', 'true')
-    # plt.annotate(str(round(T[-1], 3)), (t[-1], T[-1]), xycoords='data', xytext=(t[-1] - 125, T[-1] - 20))
-    # # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM with Greenhouse Effect')
-    #
-    # plt.show()
-
 elif selection == 5:
     print("1D EBM")
     fig, plt = oneD()  # TODO
@@ -79,7 +72,9 @@ elif selection == 6:
 elif selection == 7:
     print("Solar insolation on Eccentric orbit")
 
-    fig = insolation_single()  # TODO
+    fig = insolation_single('Light insolation on an eccentric orbit')  # TODO
+    plt.show()
+    savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', 'Light insolation on an eccentric orbit')
     # fig, plt = plotGraph(t, L, 'Light insolation on an eccentric orbit (e = 0.01671)', 'time (days)',
     #                      'Light Insolation (W/m^2)', 'false')
     #

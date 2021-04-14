@@ -27,6 +27,7 @@ def zeroD_e(plotTitle):
     t = [0]
     T = [0]
     heat_in = generate_heat_in(e, periodFractions, d_planet, Power_output, albedo)
+    print(*heat_in, sep="\n")
 
     # Generating Surface Temperature Data
     heat_content = heat_capacity * T[0]  # (J / m^2)

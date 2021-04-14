@@ -24,13 +24,13 @@ def zeroD_e_bar():
     Power_output = (4 * math.pi * R_star ** 2 * sigma * T_star ** 4) / (
             4 * math.pi * d_planet ** 2)  # Power output of star (Watts)
 
-    T = [0]
-    heat_in = []
     mins = []
     maxs = []
     eccentricities = []
 
     for j in range(1, 100):  # Iterating through each eccentricity from 0.01 to 0.99
+        T = [0]
+        heat_in = []
         e += 0.01
         eccentricities.append(e)
 
@@ -64,12 +64,10 @@ def zeroD_e_bar():
 
         mins.append(tempMin)
         maxs.append(tempMax)
-        tempMin = 10000
-        tempMax = 0
-        T = [0]  # Reset certain temporary variable for next eccentricity iteration
-        heat_in = []
+
         print(str(round(e, 2)))
 
+    fig = plt.figure()
 
     tempE = 0
     for i in range(0, 99):
@@ -93,7 +91,6 @@ def zeroD_e_bar():
 
     plt.legend(loc="lower right", title='Extra lines:', framealpha=1.0)
 
-    fig = plt.figure()
 
     # Adding labels for title and axes
     fig.suptitle('0D EBM with eccentricity variation', fontsize=12)

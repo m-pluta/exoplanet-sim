@@ -5,7 +5,7 @@ from Utility import beautifyPlot
 from Utility import plotCelciusLine
 
 
-def zeroD_EBM():
+def zeroD_EBM(plotTitle):
     # Independent variables
     timeStep = 0.2  # (y)
     waterDepth = 4000  # (m)
@@ -29,7 +29,6 @@ def zeroD_EBM():
         T.append(heat_content / heat_capacity)  # (K)
 
     # Plotting data
-    plotTitle = '0D EBM without Greenhouse effect and without eccentricity variation'
     fig = plt.figure(plotTitle)
     plt.plot(t, T, c='r', linewidth=1.75)
 

@@ -8,7 +8,7 @@ from Utility import distance_of_planet_to_star
 from Utility import plotCelciusLine
 
 
-def zeroD_e():
+def zeroD_e(plotTitle):
     # Independent Variables
     waterDepth = 400  # (m)
     albedo = 0.3  # how much light gets reflected by atmosphere
@@ -33,6 +33,7 @@ def zeroD_e():
         r = distance_of_planet_to_star(theta, d_planet, e)  # Applying Kepler's First Law to find r
         L = powerOutput / (r / d_planet) ** 2  # Calculating insolation based on distance from star relative to semi major axis
         heat_in.append((L * (1 - albedo)) / 4)
+        print(L)
 
     # Generating Surface Temperature Data
     heat_content = heat_capacity * T[0]  # (J / m^2)
@@ -48,7 +49,6 @@ def zeroD_e():
         # print(t[-1], T[-1])  # For Debugging
 
     # Plotting data
-    plotTitle = '0D EBM with eccentricity but without Greenhouse effect'
     fig = plt.figure(plotTitle)
     plt.plot(t, T, c='r', linewidth=1.75)
 

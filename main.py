@@ -24,7 +24,7 @@ selection = int(input())
 if selection == 0:
     print("0D EBM")
 
-    fig = zeroD_EBM()
+    fig = zeroD_EBM('0D EBM without Greenhouse effect and without eccentricity variation')
     # # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM without Greenhouse Effect')
 
     plt.show()
@@ -32,7 +32,7 @@ if selection == 0:
 elif selection == 1:
     print("OD EBM w/ eccentricity variation")
 
-    fig = zeroD_e()
+    fig = zeroD_e('0D EBM with eccentricity but without Greenhouse effect')
     # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM with eccentricity variation')
 
     plt.show()

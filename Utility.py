@@ -82,7 +82,7 @@ def generate_heat_in(e, periodFractions, d_planet, Power_Output, albedo):
 
 def generateEccentricityList(start, end, step):
     e = [start]
-    while e[-1] + step <= end:
+    while e[-1] <= end:
         e.append(e[-1] + step)
 
     return e

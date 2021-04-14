@@ -6,7 +6,7 @@ from Utility import plotCelciusLine
 
 
 def zeroD_GHE(plotTitle):
-    # Constants
+    # Independent Variables
     timeStep = 0.1  # years
     waterDepth = 4000  # metres
     L = 1361  # W/m^2

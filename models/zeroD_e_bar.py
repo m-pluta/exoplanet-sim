@@ -12,6 +12,7 @@ from Utility import solarOutput
 
 
 def zeroD_e_bar(plotTitle):
+    # Independent Variables
     waterDepth = 400  # (m)
     albedo = c.albedo_Earth  # how much light gets reflected by atmosphere
     epsilon = c.epsilon_Earth  # how good of a blackbody the body is

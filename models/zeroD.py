@@ -13,7 +13,7 @@ def zeroD_EBM():
     albedo = 0.3  # how much light gets reflected by atmosphere
     epsilon = 0.77  # how good of a blackbody the body is
 
-    # Init
+    # Initialisation
     heat_capacity = waterDepth * 1000 * 4200  # (J / K m^2)
     heat_in = (L * (1 - albedo)) / 4  # Watts/m^2
     t = [0]
@@ -29,7 +29,7 @@ def zeroD_EBM():
         T.append(heat_content / heat_capacity)  # (K)
 
     # Plotting data
-    plotTitle = '0D EBM without Greenhouse effect'
+    plotTitle = '0D EBM without Greenhouse effect and without eccentricity variation'
     fig = plt.figure(plotTitle)
     plt.plot(t, T, c='r', linewidth=1.75)
 

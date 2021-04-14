@@ -26,14 +26,13 @@ if selection == 0:
 
     fig = zeroD_EBM()
     # # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM without Greenhouse Effect')
-    #
+
     plt.show()
 
 elif selection == 1:
     print("OD EBM w/ eccentricity variation")
 
-    t, T = zeroD_e()
-    fig, plt = plotGraph(t, T, '0D EBM with eccentricity variation', 'time (years)', 'Surface temperature (K)', 'true')
+    fig = zeroD_e()
     # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM with eccentricity variation')
 
     plt.show()

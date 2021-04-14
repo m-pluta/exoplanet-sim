@@ -29,20 +29,16 @@ def oneD_GHE(plotTitle):
         latitudes.append(
             {'lat': (i, i + latitudeWidth), 'tempList': [0.0], 'heatContent': 0, 'albedo': albedo, 'ratio': ratio})
 
-    years = 24000  # Arbitrary value
-    iceAlbedoThreshold = 223.15
-    for i in range(1, int(years / timeStep)):  # For each time step in the given amount of year
+    years = int(input('Number of years (24000): '))  # Arbitrary value
+    iceAlbedoThreshold = int(input('IceAlbedoThreshold (223.15): '))
+
+    for i in range(int(years / timeStep)):  # For each time step in the given amount of year
         for lat in latitudes:  # Goes through each latitude
-            if lat['tempList'][-1] < iceAlbedoThreshold:
-                lat['albedo'] = 0.7
-            elif iceAlbedoThreshold <= lat['tempList'][-1] <= 273.15:
-                # ensures albedo transitions smoothly between 0.7 and 0.3 depending on temperature
-                lat['albedo'] = 0.7 - 0.4 * ((lat['tempList'][-1] - iceAlbedoThreshold) / (273.15 - iceAlbedoThreshold))
-            else:
-                lat['albedo'] = albedo
-            tempA = (0.5 * epsilonS * lat['tempList'][-1] ** 4) ** 0.25  # Temp of atmosphere assuming energy balance
+            lat['albedo'] = smoothAlbedo(lat['tempList'][-1], iceAlbedoThreshold, 273.15, albedo, 0.7)  # Linear interpolation
+
+            temp_atmosphere = (0.5 * epsilonS * lat['tempList'][-1] ** 4) ** 0.25  # Temp of atmosphere assuming energy balance
             FluxIn = (L * (1 - lat['albedo'])) / 4 * lat['ratio']  # W/m^2
-            FluxOut = (1 - epsilonA) * epsilonS * sigma * (lat['tempList'][-1] ** 4) + epsilonA * sigma * tempA ** 4
+            FluxOut = (1 - epsilonA) * epsilonS * sigma * (lat['tempList'][-1] ** 4) + epsilonA * sigma * temp_atmosphere ** 4
             FluxNet = FluxIn - FluxOut
             lat['heatContent'] += FluxNet * SiY * timeStep
             lat['tempList'].append(lat['heatContent'] / heatCapacity)
@@ -59,3 +55,13 @@ def oneD_GHE(plotTitle):
     fig = addLegend(fig, title='Latitudes: ')
 
     return fig
+
+
+def smoothAlbedo(currentTemp, iceAlbedoThreshold=263.15, MinAlbedoTemperature=273.15, minAlbedo=0.3, maxAlbedo=0.7):
+    if currentTemp < iceAlbedoThreshold:
+        return maxAlbedo
+    elif iceAlbedoThreshold <= currentTemp <= MinAlbedoTemperature:
+        # ensures albedo transitions smoothly between 0.7 and 0.3 depending on temperature - this is basically linear interpolation
+        return maxAlbedo - (maxAlbedo - minAlbedo) * (currentTemp - iceAlbedoThreshold) / (MinAlbedoTemperature - iceAlbedoThreshold)
+    else:
+        return minAlbedo

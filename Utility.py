@@ -41,6 +41,7 @@ def beautifyPlot(fig, Title, x_axis, y_axis):
 
 def plotCelciusLine(fig, t1, t2):
     plt.plot([t1, t2], [273.15, 273.15], c='c', label='0°C', lw='1.25', linestyle='dashed')
+    plt.legend(loc="lower right", title='Extra lines:', framealpha=1.0)
     return fig
 
 
@@ -59,5 +60,5 @@ def meters_to_au(x):
     return x / 149597870700
 
 
-def distance_of_planet_to_star(angle, R_planet, e):
-    return (R_planet * (1 - e ** 2)) / (1 + e * math.cos(angle))
+def distance_of_planet_to_star(angle, semi_major_axis, e):
+    return (semi_major_axis * (1 - e ** 2)) / (1 + e * math.cos(angle))

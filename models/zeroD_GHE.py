@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 
+import c
 from Utility import addLegend
 from Utility import beautifyPlot
 from Utility import plotCelciusLine
@@ -13,10 +14,8 @@ def zeroD_GHE(plotTitle):
     albedo = 0.3
     epsilonS = 1.0
     epsilonA = 0.77
-    sigma = 5.67E-8  # W/m^2/K^4
     heatCapacity = waterDepth * 4.2E6  # JK/m^2
     FluxIn = L * (1 - albedo) / 4  # W/m^2
-    SiY = 31536000  # Seconds in year
 
     # Declaring variables and initialisation
     t = [0]
@@ -29,9 +28,9 @@ def zeroD_GHE(plotTitle):
     for i in range(1, int(years / timeStep)):
         # tempA = ((epsilonS*sigma*T[-1]**4-(1-epsilonA)*epsilonS*sigma*T[-1]**4)/(2*sigma*epsilonA))**0.25
         tempA = (0.5 * epsilonS * (T[-1] ** 4)) ** 0.25  # Simplified equation
-        heatContent += FluxNet * SiY * timeStep
+        heatContent += FluxNet * c.SiY * timeStep
         T.append(heatContent / heatCapacity)
-        FluxOut = (1 - epsilonA) * (epsilonS * sigma * T[-1] ** 4) + (epsilonA * sigma * tempA ** 4)
+        FluxOut = (1 - epsilonA) * (epsilonS * c.sigma * T[-1] ** 4) + (epsilonA * c.sigma * tempA ** 4)
         FluxNet = FluxIn - FluxOut
 
         t.append(t[-1] + timeStep)

@@ -72,21 +72,16 @@ elif selection == 6:
 elif selection == 7:
     print("Solar insolation on Eccentric orbit")
 
-    fig = insolation_single('Light insolation on an eccentric orbit')  # TODO
+    fig = insolation_single('Light insolation on an eccentric orbit', False, 0)
     plt.show()
     savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', 'Light insolation on an eccentric orbit')
-    # fig, plt = plotGraph(t, L, 'Light insolation on an eccentric orbit (e = 0.01671)', 'time (days)',
-    #                      'Light Insolation (W/m^2)', 'false')
-    #
-    # # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', 'Light Insolation on an Eccentric Orbit')
-    # plt.show()
 
 elif selection == 8:
     print("Solar insolation on different eccentric orbits")
 
-    fig, plt = insolation_multiple()  # TODO
-    # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', 'Solar insolation on different eccentric orbits')
+    fig = insolation_multiple('Solar insolation on different eccentric orbits')
     plt.show()
+    savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', 'Solar insolation on different eccentric orbits')
 
 elif selection == 9:
     print("Latitude stepping 1D EBM w/ Greenhouse Effect")

@@ -25,7 +25,7 @@ def zeroD_e_bar(plotTitle):
     period = math.pow(d_planet, 1.5)  # Period of planet's orbit (years)
     Power_output = solarOutput(R_star, T_star, d_planet)  # incidentPower from star (W)
 
-    eccentricities = generateEccentricityList(0, 0.99, 0.01)
+    eccentricities = generateEccentricityList(0.5, 0.99, 0.01)
     mins = []
     maxs = []
 
@@ -44,10 +44,9 @@ def zeroD_e_bar(plotTitle):
 
             heat_content += (heat_in[i % periodFractions] - heat_out) * period / periodFractions * c.SiY
             T.append(heat_content / heat_capacity)  # (K)
-            # print(t[-1], T[-1])  # For Debugging
-            if i > 240 / (period / periodFractions):
+            if i > (years - 10 * period) / (period / periodFractions):  # Only keeps track of minimum temperatures for the last 10 periods in EBM
                 if T[-1] < tempMin:
-                    tempMin = T[-1]  # keeping track of the max and min temperatures for each eccentricity
+                    tempMin = T[-1]  # keeping track of the minimum temperature
 
         mins.append(tempMin)
         maxs.append(max(T))
@@ -67,7 +66,7 @@ def zeroD_e_bar(plotTitle):
         plt.bar(round(eccentricities[i], 2), height, width=barWidth, bottom=round(mins[i], 3), align='center', color='r')
 
     # Modifying Visual aspect of plot
-    fig = beautifyPlot(fig, plotTitle, 'Eccentricity (0.01-0.99)', 'Surface temperature (K)')
+    fig = beautifyPlot(fig, plotTitle, 'Eccentricity', 'Surface temperature (K)')
     fig = plotCelciusLine(fig, min(eccentricities), max(eccentricities))
 
     return fig

@@ -25,7 +25,7 @@ def zeroD_EBM():
     for i in range(int(years / timeStep)):
         heat_out = epsilon * c.sigma * pow(T[-1], 4)
         t.append(t[-1] + timeStep)
-        heat_content += (heat_in - heat_out) * timeStep * c.SecondsInYear
+        heat_content += (heat_in - heat_out) * timeStep * c.SiY
         T.append(heat_content / heat_capacity)  # (K)
 
     # Plotting data

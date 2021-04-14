@@ -1,7 +1,11 @@
 import math
 
+import matplotlib.pyplot as plt
 
-def latitude_stepping_GHE():
+from Utility import beautifyPlot, plotCelciusLine, addLegend
+
+
+def latitude_stepping_GHE(plotTitle):
     # Constants
     timeStep = 1  # years
     waterDepth = 4000  # m
@@ -57,4 +61,13 @@ def latitude_stepping_GHE():
                         print(str(round(len(T) / len(latitudes) * 100)) + '%')  # Loading Progress
                     break
 
-    return l, T
+    # Plotting data
+    fig = plt.figure(plotTitle)
+    plt.plot(l, T, c='r', linewidth=1.75)
+
+    # Modifying Visual aspect of plot
+    fig = beautifyPlot(fig, plotTitle, 'time (years)', 'Surface temperature (K)')
+    fig = plotCelciusLine(fig, t[0], t[-1])
+    fig = addLegend(fig)
+
+    return fig

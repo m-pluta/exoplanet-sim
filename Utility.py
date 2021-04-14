@@ -29,9 +29,9 @@ import c
 
 def beautifyPlot(fig, Title, x_axis, y_axis):
     # Adding labels for title and axes
-    fig.suptitle(Title, fontsize=12)
-    plt.xlabel(x_axis, fontsize=9)
-    plt.ylabel(y_axis, fontsize=9)
+    fig.suptitle(Title, fontsize=14)
+    plt.xlabel(x_axis, fontsize=10)
+    plt.ylabel(y_axis, fontsize=10)
     plt.minorticks_on()  # minor ticks
 
     # Drawing major & minor gridlines

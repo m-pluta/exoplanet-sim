@@ -25,11 +25,16 @@ def plotGraph(t, T, Title, x_axis, y_axis, celciusLine):
     return fig, plt
 
 
+def plotCelciusLine(fig, plt, t1, t2):
+    plt.plot([t1, t2], [273.15, 273.15], c='c', label='0°C', lw='1.25', linestyle='dashed')
+    return fig, plt
+
+
 def savePlot(fig, filePath, fileName, dpi=1000):
     # Saving plot locally
     print('Saving to ' + fileName + '.png')
     fig.savefig(filePath + fileName + '.png', dpi=dpi)
-    print('Plot saved to ' + fileName + '_2x.png')
+    print('Plot saved to ' + fileName + '.png')
 
 
 def au_to_meters(x):

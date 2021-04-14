@@ -19,7 +19,7 @@ def zeroD_e_mmm(plotTitle):
 
     R_star = c.R_Sun  # Radius of star (AU)
     d_planet = c.d_Earth  # Distance of planet from body it is orbiting  (AU)
-    T_star = 5778  # Surface Temperature of star (K)
+    T_star = c.T_Sun  # Surface Temperature of star (K)
     periodFractions = 1000  # number of fractions of period
 
     # Global Initialisation

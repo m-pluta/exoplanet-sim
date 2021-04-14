@@ -6,4 +6,4 @@ e_Earth = 0.01671  # eccentricity of the earth
 d_Earth = 1  # Distance of Earth from the Sun (AU)
 albedo_Earth = 0.3  # how much light gets reflected by atmosphere
 epsilonA_Earth = 0.77  # how good of a blackbody the atmosphere of the body is
-epsilonS_Earth = 1.0  # how good of a blackbody the surface of the body is
+epsilonS_Earth = 1  # how good of a blackbody the surface of the body is

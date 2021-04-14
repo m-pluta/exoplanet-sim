@@ -33,10 +33,10 @@ def oneD(plotTitle):
     years = int(input('Number of years (24000): '))  # Arbitrary value
     for i in range(1, int(years / timeStep)):  # For each time step in the given amount of year
         for lat in latitudes:  # Goes through each latitude
-            if lat['tempList'][-1] < 263.15:  # If colder than -10*C then higher albedo due to snow cover
+            if lat['tempList'][-1] < 273.15:  # If colder than 0*C then higher albedo due to snow cover
                 lat['albedo'] = 0.7
             else:
-                lat['albedo'] = albedo  # If warmer than 10*C then lower albedo due to snow melting
+                lat['albedo'] = albedo  # If warmer than 0*C then lower albedo due to snow melting
             heat_in = (L * (1 - lat['albedo'])) / 4 * lat['ratio']  # W/m^2
             heat_out = (epsilon * c.sigma * lat['tempList'][-1] ** 4)  # W/m^2
             net_heat = heat_in - heat_out

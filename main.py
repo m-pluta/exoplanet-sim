@@ -1,4 +1,3 @@
-from Utility import *
 from models.insolation_multiple import *
 from models.latitude_stepping_GHE import *
 from models.oneD import *
@@ -24,10 +23,10 @@ selection = int(input())
 
 if selection == 0:
     print("0D EBM")
-    t, T = zeroD_EBM()
-    fig, plt = plotGraph(t, T, '0D EBM without Greenhouse effect', 'time (years)', 'Surface temperature (K)', 'true')
-    # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM without Greenhouse Effect')
 
+    fig, plt = zeroD_EBM()
+    # # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM without Greenhouse Effect')
+    #
     plt.show()
 
 elif selection == 1:

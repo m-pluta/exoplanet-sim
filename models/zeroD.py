@@ -1,4 +1,8 @@
 def zeroD_EBM():
+    import matplotlib.pyplot as plt
+    from Utility import beautifyPlot
+    from Utility import plotCelciusLine
+
     timeStep = 0.2  # (y)
     waterDepth = 4000  # (m)
     L = 1350  # (W / m^2)
@@ -21,4 +25,11 @@ def zeroD_EBM():
         heat_content += (heat_in - heat_out) * timeStep * 3.154e7
         T.append(heat_content / heat_capacity)  # (K)
 
-    return t, T
+    plotTitle = '0D EBM without Greenhouse effect'
+    fig = plt.figure(plotTitle)
+    plt.plot(t, T, c='r', linewidth=1.75)
+
+    fig, plt = beautifyPlot(fig, plt, plotTitle, 'time (years)', 'Surface temperature (K)')
+    fig, plt = plotCelciusLine(fig, plt, t[0], t[-1])
+
+    return fig, plt

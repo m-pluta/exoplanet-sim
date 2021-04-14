@@ -37,10 +37,9 @@ elif selection == 1:
 
 elif selection == 2:
     print("OD EBM w/ eccentricity variation - Bar")
-    fig, plt = zeroD_e_bar()
-
-    # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM with eccentricity variation', 3200)
+    fig = zeroD_e_bar('OD EBM w/ eccentricity variation - Bar')
     plt.show()
+    # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM with eccentricity variation', 3200)
 
 elif selection == 3:
     print("OD EBM w/ eccentricity variation - Min/Max/Mean")

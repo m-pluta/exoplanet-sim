@@ -2,6 +2,8 @@ import math
 
 import matplotlib.pyplot as plt
 
+import c
+
 
 # def plotGraph(t, T, Title, x_axis, y_axis, celciusLine):
 #     fig = plt.figure(Title)
@@ -59,6 +61,10 @@ def au_to_meters(x):
 
 def meters_to_au(x):
     return x / 149597870700
+
+
+def solarOutput(R_star, T_star, d_planet):
+    return (4 * math.pi * R_star ** 2 * c.sigma * T_star ** 4) / (4 * math.pi * d_planet ** 2)
 
 
 def distance_of_planet_to_star(angle, semi_major_axis, e):

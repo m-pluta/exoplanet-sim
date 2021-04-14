@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 import c
 from Utility import beautifyPlot
-from Utility import distance_of_planet_to_star
+from Utility import generate_heat_in
 from Utility import plotCelciusLine
 from Utility import solarOutput
 
@@ -18,7 +18,7 @@ def zeroD_e_bar(plotTitle):
     d_planet = c.d_Earth  # Distance of planet from body it is orbiting  (AU)
     T_star = 5778  # Surface Temperature of star (K)
     e = 0  # Eccentricity of planet
-    Period_Fractions = 1000  # number of fractions of period
+    periodFractions = 1000  # number of fractions of period
 
     # Init
     heat_capacity = waterDepth * 1000 * 4200  # (J / K m^2)
@@ -31,30 +31,23 @@ def zeroD_e_bar(plotTitle):
 
     for j in range(0, 99):  # Iterating through each eccentricity from 0.01 to 0.99
         T = [0]
-        heat_in = []
+        heat_in = generate_heat_in(e, periodFractions, d_planet, Power_output, albedo)
         e += 0.01
         eccentricities.append(e)
-
-        # Generating Heat_in coefficients
-        for i in range(1, Period_Fractions + 1):
-            theta = (i / Period_Fractions) * 2 * math.pi  # Calculating angle in orbit
-            r = distance_of_planet_to_star(theta, d_planet, e)  # Applying Kepler's First Law to find r
-            L = Power_output / (r / d_planet) ** 2  # Calculating insolation based on distance from star relative to semi major axis
-            heat_in.append((L * (1 - albedo)) / 4)
 
         # Generating Data
         heat_content = heat_capacity * T[0]  # (J / m^2)
         years = 250
-        steps = int(years / (period / Period_Fractions))
+        steps = int(years / (period / periodFractions))
         tempMin = 1E24
 
         for i in range(steps):
             heat_out = epsilon * c.sigma * pow(T[-1], 4)
 
-            heat_content += (heat_in[i % Period_Fractions] - heat_out) * period / Period_Fractions * c.SiY
+            heat_content += (heat_in[i % periodFractions] - heat_out) * period / periodFractions * c.SiY
             T.append(heat_content / heat_capacity)  # (K)
             # print(t[-1], T[-1])  # For Debugging
-            if i > 240 / (period / Period_Fractions):
+            if i > 240 / (period / periodFractions):
                 if T[-1] < tempMin:
                     tempMin = T[-1]  # keeping track of the max and min temperatures for each eccentricity
 

@@ -66,7 +66,7 @@ elif selection == 5:
 
 elif selection == 6:
     print("1D EBM w/ Greenhouse effect")
-    fig = oneD_GHE('1D EBM with Greenhouse effect')  # TODO
+    fig = oneD_GHE('1D EBM with Greenhouse effect')
     plt.show()
     savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '1D EBM with Greenhouse Effect')
 

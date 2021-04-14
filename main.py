@@ -30,21 +30,21 @@ if selection == 0:
     savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM')
 
 elif selection == 1:
-    print("0D EBM with eccentricity variation")
+    print("0D EBM w/ eccentricity variation")
 
     fig = zeroD_e('0D EBM with eccentricity variation')
     plt.show()
     savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM with eccentricity variation')
 
 elif selection == 2:
-    print("OD EBM with eccentricity variation - Bar")
+    print("OD EBM w/ eccentricity variation - Bar")
 
     fig = zeroD_e_bar('OD EBM w/ eccentricity variation - Bar')
     plt.show()
     savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM with eccentricity variation - Bar', 3200)
 
 elif selection == 3:
-    print("OD EBM with eccentricity variation - Min/Max/Mean")
+    print("OD EBM w/ eccentricity variation - Min/Max/Mean")
 
     fig = zeroD_e_mmm("OD EBM with eccentricity variation - Min/Max/Mean")
     plt.show()
@@ -52,12 +52,17 @@ elif selection == 3:
 
 elif selection == 4:
     print("OD EBM w/ Greenhouse effect")
-    t, T = zeroD_GHE()
-    fig, plt = plotGraph(t, T, '0D EBM with Greenhouse Effect', 'time (years)', 'Surface temperature (K)', 'true')
-    plt.annotate(str(round(T[-1], 3)), (t[-1], T[-1]), xycoords='data', xytext=(t[-1] - 125, T[-1] - 20))
-    # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM with Greenhouse Effect')
 
+    fig = zeroD_GHE('0D EBM with Greenhouse Effect')
     plt.show()
+    savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM with Greenhouse Effect')
+
+    # t, T = zeroD_GHE()
+    # fig, plt = plotGraph(t, T, '0D EBM with Greenhouse Effect', 'time (years)', 'Surface temperature (K)', 'true')
+    # plt.annotate(str(round(T[-1], 3)), (t[-1], T[-1]), xycoords='data', xytext=(t[-1] - 125, T[-1] - 20))
+    # # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM with Greenhouse Effect')
+    #
+    # plt.show()
 
 elif selection == 5:
     print("1D EBM")

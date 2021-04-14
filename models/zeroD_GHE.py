@@ -1,4 +1,11 @@
-def zeroD_GHE():
+import matplotlib.pyplot as plt
+
+from Utility import addLegend
+from Utility import beautifyPlot
+from Utility import plotCelciusLine
+
+
+def zeroD_GHE(plotTitle):
     # Constants
     timeStep = 0.1  # years
     waterDepth = 4000  # metres
@@ -29,4 +36,13 @@ def zeroD_GHE():
 
         t.append(t[-1] + timeStep)
 
-    return t, T
+    # Plotting data
+    fig = plt.figure(plotTitle)
+    plt.plot(t, T, c='r', linewidth=1.75)
+
+    # Modifying Visual aspect of plot
+    fig = beautifyPlot(fig, plotTitle, 'time (years)', 'Surface temperature (K)')
+    fig = plotCelciusLine(fig, t[0], t[-1])
+    fig = addLegend(fig)
+
+    return fig

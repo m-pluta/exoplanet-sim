@@ -66,37 +66,37 @@ elif selection == 4:
 
 elif selection == 5:
     print("1D EBM")
-    fig, plt = oneD()
+    fig, plt = oneD()  # TODO
     # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '1D EBM without Greenhouse Effect')
     plt.show()
 
 elif selection == 6:
     print("1D EBM w/ Greenhouse effect")
-    fig, plt = oneD_GHE()
+    fig, plt = oneD_GHE()  # TODO
     # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '1D EBM with Greenhouse Effect')
     plt.show()
 
 elif selection == 7:
     print("Solar insolation on Eccentric orbit")
 
-    t, L = insolation_single()
-    fig, plt = plotGraph(t, L, 'Light insolation on an eccentric orbit (e = 0.01671)', 'time (days)',
-                         'Light Insolation (W/m^2)', 'false')
-
-    # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', 'Light Insolation on an Eccentric Orbit')
-    plt.show()
+    fig = insolation_single()  # TODO
+    # fig, plt = plotGraph(t, L, 'Light insolation on an eccentric orbit (e = 0.01671)', 'time (days)',
+    #                      'Light Insolation (W/m^2)', 'false')
+    #
+    # # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', 'Light Insolation on an Eccentric Orbit')
+    # plt.show()
 
 elif selection == 8:
     print("Solar insolation on different eccentric orbits")
 
-    fig, plt = insolation_multiple()
+    fig, plt = insolation_multiple()  # TODO
     # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', 'Solar insolation on different eccentric orbits')
     plt.show()
 
 elif selection == 9:
     print("Latitude stepping 1D EBM w/ Greenhouse Effect")
 
-    t, T = latitude_stepping_GHE()
+    t, T = latitude_stepping_GHE()  # TODO
     fig, plt = plotGraph(t, T, 'Latitude Stepping 1D EBM with GHE', 'Latitude (°)', 'Stable Surface Temperature (K)',
                          'true')
     # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', 'Latitude Stepping 1D EBM with GHE')

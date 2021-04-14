@@ -3,6 +3,7 @@ import math
 import matplotlib.pyplot as plt
 
 import c
+from Utility import addLegend
 from Utility import beautifyPlot
 from Utility import generate_heat_in
 from Utility import plotCelciusLine
@@ -46,5 +47,6 @@ def zeroD_e(plotTitle):
     # Modifying Visual aspect of plot
     fig = beautifyPlot(fig, plotTitle, 'time (years)', 'Surface temperature (K)')
     fig = plotCelciusLine(fig, t[0], t[-1])
+    fig = addLegend(fig)
 
     return fig

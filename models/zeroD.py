@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 
 import c
+from Utility import addLegend
 from Utility import beautifyPlot
 from Utility import plotCelciusLine
 from Utility import solarOutput
@@ -36,5 +37,6 @@ def zeroD_EBM(plotTitle):
     # Modifying Visual aspect of plot
     fig = beautifyPlot(fig, plotTitle, 'time (years)', 'Surface temperature (K)')
     fig = plotCelciusLine(fig, t[0], t[-1])
+    fig = addLegend(fig)
 
     return fig

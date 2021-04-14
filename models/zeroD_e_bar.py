@@ -3,6 +3,7 @@ import math
 import matplotlib.pyplot as plt
 
 import c
+from Utility import addLegend
 from Utility import beautifyPlot
 from Utility import generateEccentricityList
 from Utility import generate_heat_in
@@ -68,5 +69,6 @@ def zeroD_e_bar(plotTitle):
     # Modifying Visual aspect of plot
     fig = beautifyPlot(fig, plotTitle, 'Eccentricity', 'Surface temperature (K)')
     fig = plotCelciusLine(fig, min(eccentricities), max(eccentricities))
+    fig = addLegend(fig, 'upper left', 'Plots: ')
 
     return fig

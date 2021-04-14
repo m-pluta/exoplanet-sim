@@ -47,6 +47,11 @@ def plotCelciusLine(fig, t1, t2):
     return fig
 
 
+def addLegend(fig, pos='lower right', title='Extra Lines: '):
+    plt.legend(loc=pos, title=title, framealpha=1.0)
+    return fig
+
+
 def savePlot(fig, filePath, fileName, dpi=1000):
     if input("Would you like to save this figure? (YES/NO): ") == "YES":
         # Saving plot locally

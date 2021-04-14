@@ -25,6 +25,20 @@ def plotGraph(t, T, Title, x_axis, y_axis, celciusLine):
     return fig, plt
 
 
+def beautifyPlot(fig, plt, Title, x_axis, y_axis):
+    # Adding labels for title and axes
+    fig.suptitle(Title, fontsize=12)
+    plt.xlabel(x_axis, fontsize=9)
+    plt.ylabel(y_axis, fontsize=9)
+    plt.minorticks_on()  # minor ticks
+
+    # Drawing major & minor gridlines
+    plt.grid(b=True, which='major', color='black', linestyle='-', linewidth=0.5)
+    plt.grid(b=True, which='minor', color='grey', linestyle=':', linewidth=0.2)
+
+    return fig, plt
+
+
 def plotCelciusLine(fig, plt, t1, t2):
     plt.plot([t1, t2], [273.15, 273.15], c='c', label='0°C', lw='1.25', linestyle='dashed')
     return fig, plt

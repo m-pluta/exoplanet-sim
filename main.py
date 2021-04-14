@@ -59,9 +59,10 @@ elif selection == 4:
 
 elif selection == 5:
     print("1D EBM")
-    fig, plt = oneD()  # TODO
-    # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '1D EBM without Greenhouse Effect')
+
+    fig = oneD('1D EBM')
     plt.show()
+    savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '1D EBM')
 
 elif selection == 6:
     print("1D EBM w/ Greenhouse effect")

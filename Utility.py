@@ -46,10 +46,11 @@ def plotCelciusLine(fig, t1, t2):
 
 
 def savePlot(fig, filePath, fileName, dpi=1000):
-    # Saving plot locally
-    print('Saving to ' + fileName + '.png')
-    fig.savefig(filePath + fileName + '.png', dpi=dpi)
-    print('Plot saved to ' + fileName + '.png')
+    if input("Would you like to save this figure? (YES/NO): ") == "YES":
+        # Saving plot locally
+        print('Saving to ' + fileName + '.png')
+        fig.savefig(filePath + fileName + '.png', dpi=dpi)
+        print('Plot saved to ' + fileName + '.png')
 
 
 def au_to_meters(x):

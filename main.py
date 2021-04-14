@@ -1,3 +1,4 @@
+from Utility import savePlot
 from models.insolation_multiple import *
 from models.latitude_stepping_GHE import *
 from models.oneD import *
@@ -23,19 +24,16 @@ selection = int(input())
 
 if selection == 0:
     print("0D EBM")
-
-    fig = zeroD_EBM('0D EBM without Greenhouse effect and without eccentricity variation')
-    # # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM without Greenhouse Effect')
-
+    fig = zeroD_EBM('0D EBM')
     plt.show()
+    savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM')
 
 elif selection == 1:
     print("OD EBM w/ eccentricity variation")
 
     fig = zeroD_e('0D EBM with eccentricity but without Greenhouse effect')
-    # savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM with eccentricity variation')
-
     plt.show()
+    savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM with eccentricity variation')
 
 elif selection == 2:
     print("OD EBM w/ eccentricity variation - Bar")

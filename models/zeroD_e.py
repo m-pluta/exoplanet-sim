@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 import c
 from Utility import beautifyPlot
-from Utility import distance_of_planet_to_star
+from Utility import generate_heat_in
 from Utility import plotCelciusLine
 
 
@@ -22,18 +22,10 @@ def zeroD_e(plotTitle):
     # Initialisation
     heat_capacity = waterDepth * 1000 * 4200  # (J / K m^2)
     period = math.pow(d_planet, 1.5)  # Period of planet's orbit (years)
-    powerOutput = (4 * math.pi * R_star ** 2 * c.sigma * T_star ** 4) / (4 * math.pi * d_planet ** 2)  # Power output of star (Watts)
+    Power_output = (4 * math.pi * R_star ** 2 * c.sigma * T_star ** 4) / (4 * math.pi * d_planet ** 2)  # Power output of star (Watts)
     t = [0]
     T = [0]
-    heat_in = []
-
-    # Generating Heat_in coefficients
-    for i in range(1, periodFractions + 1):
-        theta = (i / periodFractions) * 2 * math.pi  # Calculating angle in orbit
-        r = distance_of_planet_to_star(theta, d_planet, e)  # Applying Kepler's First Law to find r
-        L = powerOutput / (r / d_planet) ** 2  # Calculating insolation based on distance from star relative to semi major axis
-        heat_in.append((L * (1 - albedo)) / 4)
-        print(L)
+    heat_in = generate_heat_in(e, periodFractions, d_planet, Power_output, albedo)
 
     # Generating Surface Temperature Data
     heat_content = heat_capacity * T[0]  # (J / m^2)

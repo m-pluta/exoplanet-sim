@@ -18,8 +18,6 @@ def latitude_stepping_GHE(plotTitle):
     waterDepth = 4000  # m
     latitudeWidth = 1  # degrees
 
-    fac = 2  # the factor used to allow <latitudeWidth/fac> increments in latitude
-
     # Initialisation
     heatCapacity = waterDepth * 4.2E6  # J/K/m^2
     L = solarConstant(R_star, T_star, d_planet)  # W/m^2
@@ -29,14 +27,19 @@ def latitude_stepping_GHE(plotTitle):
     l = []
     T = []
 
-    for i in range(-90 * fac, 90 * fac, latitudeWidth):
+    factor = 1  # the factor used to allow <latitudeWidth/fac> increments in latitude
+    magnitude = math.floor(math.log10(latitudeWidth))
+    if magnitude < 0:  # Finds magnitude of latitudeWidth and scales for loop parameters so they are all integers depending on the magnitude
+        factor = math.pow(10, abs(magnitude))
+
+    for i in range(int(-90 * factor), int(90 * factor), int(latitudeWidth * factor)):
         # Ratio of height of arc (from the view of a cross section of the earth) to the length of the arc i.e Ratio of Flux in vs Flux out
-        ratio = (math.sin(math.radians((i + latitudeWidth) / fac)) - math.sin(math.radians(i / fac))) / (((latitudeWidth / fac) / 360) * 2 * math.pi)
+        ratio = (math.sin(math.radians((i + latitudeWidth) / factor)) - math.sin(math.radians(i / factor))) / (((latitudeWidth / factor) / 360) * 2 * math.pi)
         # Creates a dictionary element for each latitude
         latitudes.append(
-            {'lat': (i / fac, (i + latitudeWidth) / fac), 'tempList': [0.0], 'heatContent': 0, 'albedo': albedo,
+            {'lat': (i / factor, (i + latitudeWidth) / factor), 'tempList': [0.0], 'heatContent': 0, 'albedo': albedo,
              'ratio': ratio})
-        l.append(i / fac)
+        l.append(i / factor)
 
     years = 1000000  # Arbitrary value - the value of this doesnt actually matter too much
     iceAlbedoThreshold = 223.15  # Minimum temp for ice properties to start changing
@@ -52,7 +55,7 @@ def latitude_stepping_GHE(plotTitle):
             lat['heatContent'] += net_heat * c.SiY * timeStep
             lat['tempList'].append(lat['heatContent'] / heatCapacity)
             if len(lat['tempList']) > 2 and lat['tempList'][-2] != 0:
-                if (lat['tempList'][-1] - lat['tempList'][-2]) / lat['tempList'][-2] < 1E-17:  # Check if recent temp has changed a lot since the previous one.
+                if (lat['tempList'][-1] - lat['tempList'][-2]) / lat['tempList'][-2] < 1E-20:  # Check if recent temp has changed a lot since the previous one.
                     T.append(lat['tempList'][-1])
                     if (len(T) % (len(latitudes) / 20) == 0):
                         print(str(round(len(T) / len(latitudes) * 100)) + '%')  # Loading Progress

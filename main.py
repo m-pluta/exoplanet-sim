@@ -87,8 +87,6 @@ elif selection == 8:
 elif selection == 9:
     print("Latitude stepping 1D EBM w/ Greenhouse Effect")
 
-    fig = latitude_stepping_GHE('Latitude Stepping 1D EBM with GHE')  # TODO
-    # fig, plt = plotGraph(t, T, 'Latitude Stepping 1D EBM with GHE', 'Latitude (°)', 'Stable Surface Temperature (K)',
-    #                     'true')
+    fig = latitude_stepping_GHE('Latitude Stepping 1D EBM with GHE')
     plt.show()
     savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', 'Latitude Stepping 1D EBM with GHE')

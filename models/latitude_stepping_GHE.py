@@ -45,14 +45,14 @@ def latitude_stepping_GHE(plotTitle):
         for i in range(int(years / timeStep)):
             lat['albedo'] = smoothAlbedo(lat['tempList'][-1], iceAlbedoThreshold, 273.15, albedo, 0.7)  # Linear interpolation
 
-            tempA = (0.5 * epsilonS * lat['tempList'][-1] ** 4) ** 0.25  # Temp of atmosphere assuming energy balance
-            FluxIn = (L * (1 - lat['albedo'])) / 4 * lat['ratio']  # W/m^2
-            FluxOut = (1 - epsilonA) * epsilonS * c.sigma * (lat['tempList'][-1] ** 4) + epsilonA * c.sigma * tempA ** 4
-            FluxNet = FluxIn - FluxOut
-            lat['heatContent'] += FluxNet * c.SiY * timeStep
+            temp_atmosphere = (0.5 * epsilonS * lat['tempList'][-1] ** 4) ** 0.25  # Temp of atmosphere assuming energy balance
+            heat_in = (L * (1 - lat['albedo'])) / 4 * lat['ratio']  # W/m^2
+            heat_out = (1 - epsilonA) * epsilonS * c.sigma * (lat['tempList'][-1] ** 4) + epsilonA * c.sigma * temp_atmosphere ** 4
+            net_heat = heat_in - heat_out
+            lat['heatContent'] += net_heat * c.SiY * timeStep
             lat['tempList'].append(lat['heatContent'] / heatCapacity)
             if len(lat['tempList']) > 2 and lat['tempList'][-2] != 0:
-                if (lat['tempList'][-1] - lat['tempList'][-2]) / lat['tempList'][-2] < 1E-17:
+                if (lat['tempList'][-1] - lat['tempList'][-2]) / lat['tempList'][-2] < 1E-17:  # Check if recent temp has changed a lot since the previous one.
                     T.append(lat['tempList'][-1])
                     if (len(T) % (len(latitudes) / 20) == 0):
                         print(str(round(len(T) / len(latitudes) * 100)) + '%')  # Loading Progress
@@ -63,8 +63,8 @@ def latitude_stepping_GHE(plotTitle):
     plt.plot(l, T, c='r', linewidth=1.75)
 
     # Modifying Visual aspect of plot
-    fig = beautifyPlot(fig, plotTitle, 'time (years)', 'Surface temperature (K)')
-    fig = plotCelciusLine(fig, t[0], t[-1])
+    fig = beautifyPlot(fig, plotTitle, 'Latitude (°)', 'Stable Surface Temperature (K)')
+    fig = plotCelciusLine(fig, l[0], l[-1])
     fig = addLegend(fig)
 
     return fig

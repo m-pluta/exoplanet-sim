@@ -16,7 +16,7 @@ def latitude_stepping_GHE(plotTitle):
     epsilonA = c.epsilonA_Earth
     timeStep = 1  # years
     waterDepth = 4000  # m
-    latitudeWidth = 1  # degrees
+    latitudeWidth = 0.5  # degrees
 
     # Initialisation
     heatCapacity = waterDepth * 4.2E6  # J/K/m^2
@@ -45,6 +45,7 @@ def latitude_stepping_GHE(plotTitle):
     iceAlbedoThreshold = 223.15  # Minimum temp for ice properties to start changing
 
     for lat in latitudes:
+        addedTemp = False
         for i in range(int(years / timeStep)):
             lat['albedo'] = smoothAlbedo(lat['tempList'][-1], iceAlbedoThreshold, 273.15, albedo, 0.7)  # Linear interpolation
 
@@ -57,9 +58,12 @@ def latitude_stepping_GHE(plotTitle):
             if len(lat['tempList']) > 2 and lat['tempList'][-2] != 0:
                 if (lat['tempList'][-1] - lat['tempList'][-2]) / lat['tempList'][-2] < 1E-20:  # Check if recent temp has changed a lot since the previous one.
                     T.append(lat['tempList'][-1])
+                    addedTemp = True
                     if (len(T) % (len(latitudes) / 20) == 0):
                         print(str(round(len(T) / len(latitudes) * 100)) + '%')  # Loading Progress
                     break
+        if not addedTemp:
+            T.append(lat['tempList'][-1])
 
     # Plotting data
     fig = plt.figure(plotTitle)

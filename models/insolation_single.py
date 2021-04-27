@@ -23,7 +23,6 @@ def insolation_single(plotTitle, iterated, parsedE):
 
     # Initialisation
     period = math.pow(d_planet, 1.5) * 365.25
-    print(period)
     Power_output = solarConstant(R_star, T_star, d_planet)
 
     t = []
@@ -33,7 +32,6 @@ def insolation_single(plotTitle, iterated, parsedE):
     # Generating Data
     for i in range(0, periodFractions):
         t.append((i / periodFractions) * period)
-        theta = (i / periodFractions) * 2 * math.pi  # Calculating angle in orbit
         r = ke.radius(i / periodFractions)  # Applying Kepler's First Law to find r
         newL = Power_output / (r / d_planet) ** 2  # Calculating insolation based on position in orbit relative to the starting point
         L.append(newL)

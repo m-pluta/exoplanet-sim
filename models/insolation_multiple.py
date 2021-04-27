@@ -3,7 +3,7 @@ from models.insolation_single import *
 
 
 def insolation_multiple(plotTitle):
-    eccentricities = [(0, 'c'), (0.2, 'g'), (0.4, 'b'), (0.6, 'y'), (0.8, 'm')]
+    eccentricities = [(0, 'c'), (0.2, 'g'), (0.4, 'b'), (0.6, 'y')]
 
     # Plotting data
     fig = plt.figure(plotTitle)

@@ -27,7 +27,7 @@ def zeroD_e_mmm(plotTitle):
     period = math.pow(d_planet, 1.5)  # Period of planet's orbit (years)
     Power_output = solarConstant(R_star, T_star, d_planet)  # incidentPower from star (W)
 
-    eccentricities = generateEccentricityList(0.5, 0.99, 0.01)
+    eccentricities = generateEccentricityList(0, 0.99, 0.01)
     mins = []
     means = []
     maxs = []

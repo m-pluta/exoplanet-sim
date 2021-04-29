@@ -82,7 +82,6 @@ def generate_heat_in(e, periodFractions, d_planet, Power_Output, albedo):
         theta = (i / periodFractions) * 2 * math.pi  # Calculating angle in orbit
         r = distance_of_planet_to_star(theta, d_planet, e)  # Applying Kepler's First Law to find r
         L = Power_Output / (r / d_planet) ** 2  # Calculating insolation based on distance from star relative to semi major axis
-        print(L)
         heat_in.append((L * (1 - albedo)) / 4)
 
     return heat_in

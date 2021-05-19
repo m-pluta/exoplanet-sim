@@ -87,6 +87,19 @@ def generate_heat_in(e, periodFractions, d_planet, Power_Output, albedo):
     return heat_in
 
 
+def generate_heat_in_updated(ke, periodFractions, d_planet, Power_Output, albedo):
+    heat_in = []
+
+    # Generating Heat_in coefficients
+    for i in range(0, periodFractions):
+        theta = (i / periodFractions) * 2 * math.pi  # Calculating angle in orbit
+        r = ke.radius(i / periodFractions)  # Applying Kepler's First Law to find r
+        L = Power_Output / (r / d_planet) ** 2  # Calculating insolation based on distance from star relative to semi major axis
+        heat_in.append((L * (1 - albedo)) / 4)
+
+    return heat_in
+
+
 def generateEccentricityList(start, end, step):
     e = [start]
     while e[-1] <= end:

@@ -1,11 +1,12 @@
 import math
 
 import matplotlib.pyplot as plt
+from PyAstronomy import pyasl
 
 import c
 from Utility import addLegend
 from Utility import beautifyPlot
-from Utility import generate_heat_in
+from Utility import generate_heat_in_updated
 from Utility import plotCelciusLine
 from Utility import solarConstant
 
@@ -21,14 +22,17 @@ def zeroD_e(plotTitle):
     e = float(input("Eccentricity (0.01671): "))  # Eccentricity of planet
     periodFractions = 10000  # number of fractions of period
 
-    # Initialisation
+    # Initialisationss
     heat_capacity = waterDepth * 1000 * 4200  # (J / K m^2)
     period = math.pow(d_planet, 1.5)  # Period of planet's orbit (years)
-    Power_output = solarConstant(c.R_Sun, c.T_Sun, c.d_Earth)  # Power output of star (Watts)
+    Power_output = solarConstant(R_star, T_star, c.d_Earth)  # Power output of star (Watts)
     t = [0]
     T = [0]
-    heat_in = generate_heat_in(e, periodFractions, d_planet, Power_output, albedo)
-    print(*heat_in, sep="\n")
+
+    ke = pyasl.KeplerEllipse(d_planet, period, e, Omega=0., i=0.0, w=0.0)
+    heat_in = generate_heat_in_updated(ke, periodFractions, d_planet, Power_output, albedo)
+    # heat_in = generate_heat_in(e, periodFractions, d_planet, Power_output, albedo)
+    # print(*heat_in, sep="\n")
 
     # Generating Surface Temperature Data
     heat_content = heat_capacity * T[0]  # (J / m^2)

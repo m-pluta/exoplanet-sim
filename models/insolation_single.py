@@ -22,16 +22,16 @@ def insolation_single(plotTitle, iterated, parsedE):
         e = parsedE
 
     # Initialisation
-    period = math.pow(d_planet, 1.5) * 365.25
+    period = math.pow(d_planet, 1.5)
     Power_output = solarConstant(R_star, T_star, d_planet)
 
     t = []
     L = []
-    ke = pyasl.KeplerEllipse(d_planet, period / 365.25, e, Omega=0., i=0.0, w=0.0)
+    ke = pyasl.KeplerEllipse(d_planet, period, e, Omega=0., i=0.0, w=0.0)
 
     # Generating Data
     for i in range(0, periodFractions):
-        t.append((i / periodFractions) * period)
+        t.append((i / periodFractions) * period * 365.25)
         r = ke.radius(i / periodFractions)  # Applying Kepler's First Law to find r
         newL = Power_output / (r / d_planet) ** 2  # Calculating insolation based on position in orbit relative to the starting point
         L.append(newL)

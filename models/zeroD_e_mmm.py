@@ -1,19 +1,19 @@
 import math
 
 import matplotlib.pyplot as plt
+from PyAstronomy import pyasl
 
 import c
-from Utility import addLegend
+from Utility import addLegend, generate_heat_in_updated
 from Utility import beautifyPlot
 from Utility import generateEccentricityList
-from Utility import generate_heat_in
 from Utility import plotCelciusLine
 from Utility import solarConstant
 
 
 def zeroD_e_mmm(plotTitle):
     # Independent Variables
-    waterDepth = 400  # (m)
+    waterDepth = 0  # (m)
     albedo = c.albedo_Earth  # how much light gets reflected by atmosphere
     epsilon = c.epsilonA_Earth  # how good of a blackbody the body is
 
@@ -40,7 +40,8 @@ def zeroD_e_mmm(plotTitle):
         years = 250
         steps = int(years / (period / periodFractions))
         tempMin = 1E24
-        heat_in = generate_heat_in(e, periodFractions, d_planet, Power_output, albedo)
+        ke = pyasl.KeplerEllipse(d_planet, period, e, Omega=0., i=0.0, w=0.0)
+        heat_in = generate_heat_in_updated(ke, periodFractions, d_planet, Power_output, albedo)
 
         tempMax = 0
         tempMean = 0

@@ -1,12 +1,12 @@
 import math
 
 import matplotlib.pyplot as plt
+from PyAstronomy import pyasl
 
 import c
-from Utility import addLegend
+from Utility import addLegend, generate_heat_in_updated
 from Utility import beautifyPlot
 from Utility import generateEccentricityList
-from Utility import generate_heat_in
 from Utility import plotCelciusLine
 from Utility import solarConstant
 
@@ -27,7 +27,7 @@ def zeroD_e_bar(plotTitle):
     period = math.pow(d_planet, 1.5)  # Period of planet's orbit (years)
     Power_output = solarConstant(R_star, T_star, d_planet)  # incidentPower from star (W)
 
-    eccentricities = generateEccentricityList(0.5, 0.99, 0.01)
+    eccentricities = generateEccentricityList(0, 0.99, 0.01)
     mins = []
     maxs = []
 
@@ -39,7 +39,8 @@ def zeroD_e_bar(plotTitle):
         years = 250
         steps = int(years / (period / periodFractions))
         tempMin = 1E24
-        heat_in = generate_heat_in(e, periodFractions, d_planet, Power_output, albedo)
+        ke = pyasl.KeplerEllipse(d_planet, period, e, Omega=0., i=0.0, w=0.0)
+        heat_in = generate_heat_in_updated(ke, periodFractions, d_planet, Power_output, albedo)
 
         for i in range(steps):
             heat_out = epsilon * c.sigma * pow(T[-1], 4)

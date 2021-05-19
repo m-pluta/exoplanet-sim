@@ -48,7 +48,7 @@ elif selection == 3:
 
     fig = zeroD_e_mmm("OD EBM with eccentricity variation - Min/Max/Mean")
     plt.show()
-    savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', 'OD EBM with eccentricity variation - Min/Max/Mean', 3200)
+    savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', 'OD EBM with eccentricity variation - Min Max Mean', 3200)
 
 elif selection == 4:
     print("OD EBM w/ Greenhouse effect")

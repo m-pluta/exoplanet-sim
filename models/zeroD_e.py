@@ -20,7 +20,7 @@ def zeroD_e(plotTitle):
     d_planet = c.d_Earth  # Distance of planet from body it is orbiting  (AU)
     T_star = c.T_Sun  # Surface Temperature of star (K)
     e = float(input("Eccentricity (0.01671): "))  # Eccentricity of planet
-    periodFractions = 10000  # number of fractions of period
+    periodFractions = 1000  # number of fractions of period
 
     # Initialisationss
     heat_capacity = waterDepth * 1000 * 4200  # (J / K m^2)

@@ -13,7 +13,7 @@ from Utility import solarConstant
 
 def zeroD_e_mmm(plotTitle):
     # Independent Variables
-    waterDepth = 0  # (m)
+    waterDepth = 400  # (m)
     albedo = c.albedo_Earth  # how much light gets reflected by atmosphere
     epsilon = c.epsilonA_Earth  # how good of a blackbody the body is
 
@@ -42,8 +42,6 @@ def zeroD_e_mmm(plotTitle):
         tempMin = 1E24
         ke = pyasl.KeplerEllipse(d_planet, period, e, Omega=0., i=0.0, w=0.0)
         heat_in = generate_heat_in_updated(ke, periodFractions, d_planet, Power_output, albedo)
-
-        tempMax = 0
         tempMean = 0
         countMean = 0
 
@@ -64,7 +62,7 @@ def zeroD_e_mmm(plotTitle):
         maxs.append(max(T))
         means.append(tempMean / countMean)
 
-        print(str(round(e, 2) * 100))
+        print(str(round(e * 100, 0)))
 
     # Plotting data
     fig = plt.figure(plotTitle)

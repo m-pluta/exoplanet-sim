@@ -40,7 +40,7 @@ def zeroD_e(plotTitle):
     steps = int(years / (period / periodFractions))
 
     for i in range(steps):
-        t.append(t[-1] + (period / periodFractions))
+        t.append(t[-1] + (period / periodFractions) * period)
         heat_out = epsilon * c.sigma * pow(T[-1], 4)
 
         heat_content += (heat_in[i % periodFractions] - heat_out) * period / periodFractions * c.SiY

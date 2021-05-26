@@ -74,26 +74,27 @@ def solarConstant(R_star, T_star, d_planet):
     return (4 * math.pi * R_star ** 2 * c.sigma * T_star ** 4) / (4 * math.pi * d_planet ** 2)
 
 
-def generate_heat_in(e, periodFractions, d_planet, Power_Output, albedo):
-    heat_in = []
-
-    # Generating Heat_in coefficients
-    for i in range(0, periodFractions):
-        theta = (i / periodFractions) * 2 * math.pi  # Calculating angle in orbit
-        r = distance_of_planet_to_star(theta, d_planet, e)  # Applying Kepler's First Law to find r
-        L = Power_Output / (r / d_planet) ** 2  # Calculating insolation based on distance from star relative to semi major axis
-        heat_in.append((L * (1 - albedo)) / 4)
-
-    return heat_in
+# This is an obsolete method
+# def generate_heat_in(e, periodFractions, d_planet, Power_Output, albedo):
+#     heat_in = []
+#
+#     # Generating Heat_in coefficients
+#     for i in range(0, periodFractions):
+#         theta = (i / periodFractions) * 2 * math.pi  # Calculating angle in orbit
+#         r = distance_of_planet_to_star(theta, d_planet, e)  # Applying Kepler's First Law to find r
+#         L = Power_Output / (r / d_planet) ** 2  # Calculating insolation based on distance from star relative to semi major axis
+#         heat_in.append((L * (1 - albedo)) / 4)
+#
+#     return heat_in
 
 
 def generate_heat_in_updated(ke, periodFractions, d_planet, Power_Output, albedo):
     heat_in = []
+    period = d_planet ** (3 / 2)
 
     # Generating Heat_in coefficients
     for i in range(0, periodFractions):
-        theta = (i / periodFractions) * 2 * math.pi  # Calculating angle in orbit
-        r = ke.radius(i / periodFractions)  # Applying Kepler's First Law to find r
+        r = ke.radius(i / periodFractions * period)  # Applying Kepler's First Law to find r
         L = Power_Output / (r / d_planet) ** 2  # Calculating insolation based on distance from star relative to semi major axis
         heat_in.append((L * (1 - albedo)) / 4)
 
@@ -108,5 +109,6 @@ def generateEccentricityList(start, end, step):
     return e
 
 
+# No longer in use
 def distance_of_planet_to_star(angle, semi_major_axis, e):
     return (semi_major_axis * (1 - e ** 2)) / (1 + e * math.cos(angle))

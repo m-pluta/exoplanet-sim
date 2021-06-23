@@ -1,4 +1,3 @@
-from Utility import savePlot
 from models.insolation_multiple import *
 from models.latitude_stepping_GHE import *
 from models.oneD import *
@@ -22,71 +21,73 @@ print("8 - Solar insolation on different eccentric orbits")
 print("9 - Latitude stepping 1D EBM w/ Greenhouse Effect")
 selection = int(input())
 
+directory = 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\'
 if selection == 0:
     print("0D EBM")
 
     fig = zeroD_EBM('0D EBM')
     plt.show()
-    savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM')
+    savePlot(fig, directory, '0D EBM')
 
 elif selection == 1:
     print("0D EBM w/ eccentricity variation")
 
     fig = zeroD_e('0D EBM with eccentricity variation')
     plt.show()
-    savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM with eccentricity variation')
+    savePlot(fig, directory, '0D EBM with eccentricity variation')
+
 
 elif selection == 2:
     print("OD EBM w/ eccentricity variation - Bar")
 
     fig = zeroD_e_bar('OD EBM w/ eccentricity variation - Bar')
     plt.show()
-    savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM with eccentricity variation - Bar', 1000)
+    savePlot(fig, directory, '0D EBM with eccentricity variation - Bar', 1000)
 
 elif selection == 3:
     print("OD EBM w/ eccentricity variation - Min/Max/Mean")
 
     fig = zeroD_e_mmm("OD EBM with eccentricity variation - Min/Max/Mean")
     plt.show()
-    savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', 'OD EBM with eccentricity variation - Min Max Mean', 1000)
+    savePlot(fig, directory, 'OD EBM with eccentricity variation - Min Max Mean', 1000)
 
 elif selection == 4:
     print("OD EBM w/ Greenhouse effect")
 
     fig = zeroD_GHE('0D EBM with Greenhouse Effect')
     plt.show()
-    savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '0D EBM with Greenhouse Effect')
+    savePlot(fig, directory, '0D EBM with Greenhouse Effect')
 
 elif selection == 5:
     print("1D EBM")
 
     fig = oneD('1D EBM')
     plt.show()
-    savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '1D EBM')
+    savePlot(fig, directory, '1D EBM')
 
 elif selection == 6:
     print("1D EBM w/ Greenhouse effect")
     fig = oneD_GHE('1D EBM with Greenhouse effect')
     plt.show()
-    savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', '1D EBM with Greenhouse Effect')
+    savePlot(fig, directory, '1D EBM with Greenhouse Effect')
 
 elif selection == 7:
     print("Solar insolation on Eccentric orbit")
 
     fig = insolation_single('Light insolation on an eccentric orbit', False, 0)
     plt.show()
-    savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', 'Light insolation on an eccentric orbit')
+    savePlot(fig, directory, 'Light insolation on an eccentric orbit')
 
 elif selection == 8:
     print("Solar insolation on different eccentric orbits")
 
     fig = insolation_multiple('Solar insolation on different eccentric orbits')
     plt.show()
-    savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', 'Solar insolation on different eccentric orbits')
+    savePlot(fig, directory, 'Solar insolation on different eccentric orbits')
 
 elif selection == 9:
     print("Latitude stepping 1D EBM w/ Greenhouse Effect")
 
     fig = latitude_stepping_GHE('Latitude Stepping 1D EBM with GHE')
     plt.show()
-    savePlot(fig, 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\', 'Latitude Stepping 1D EBM with GHE')
+    savePlot(fig, directory, 'Latitude Stepping 1D EBM with GHE')

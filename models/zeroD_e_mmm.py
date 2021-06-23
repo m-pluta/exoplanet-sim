@@ -25,7 +25,7 @@ def zeroD_e_mmm(plotTitle):
     # Global Initialisation
     heat_capacity = waterDepth * 1000 * 4200  # (J / K m^2)
     period = math.pow(d_planet, 1.5)  # Period of planet's orbit (years)
-    Power_output = solarConstant(R_star, T_star, d_planet)  # incidentPower from star (W)
+    Power_output = solarConstant(T_star, R_star, d_planet)  # incidentPower from star (W)
 
     eccentricities = generateEccentricityList(0, 0.99, 0.01)
     mins = []

@@ -20,7 +20,7 @@ def oneD_GHE(plotTitle):
 
     # Initialisation
     heatCapacity = waterDepth * 4.2E6  # J/K/m^2
-    L = solarConstant(R_star, T_star, d_planet)
+    L = solarConstant(T_star, R_star, d_planet)
     t = [0]
     latitudes = []
 

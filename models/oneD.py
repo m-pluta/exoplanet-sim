@@ -18,7 +18,7 @@ def oneD(plotTitle):
     latitudeWidth = 10  # degrees
 
     # Initialisation
-    L = solarConstant(R_star, T_star, d_planet)  # W/m^2
+    L = solarConstant(T_star, R_star, d_planet)  # W/m^2
     heatCapacity = waterDepth * 4.2E6  # J/K/m^2
     t = [0]
     latitudes = []

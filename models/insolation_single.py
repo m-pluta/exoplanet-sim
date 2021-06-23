@@ -23,7 +23,7 @@ def insolation_single(plotTitle, iterated, parsedE):
 
     # Initialisation
     period = math.pow(d_planet, 1.5)
-    Power_output = solarConstant(R_star, T_star, d_planet)
+    Power_output = solarConstant(T_star, R_star, d_planet)
 
     t = []
     L = []

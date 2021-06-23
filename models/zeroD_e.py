@@ -14,7 +14,7 @@ def zeroD_e(plotTitle):
     e = float(input("Eccentricity (0.01671): "))  # Eccentricity of planet
     periodFractions = 1000  # number of fractions of period
 
-    # Initialisations
+    # Initialisation
     heat_capacity = waterDepth * 1000 * 4200  # (J / K m^2)
     period = math.pow(d_planet, 1.5)  # Period of planet's orbit (years)
     Power_output = PowerOutput(T_star)  # Power output of star (Watts/m^2)
@@ -28,8 +28,8 @@ def zeroD_e(plotTitle):
 
     # Generating Surface Temperature Data
     heat_content = heat_capacity * T[0]  # (J / m^2)
-    years = int(input('Number of years (250): '))
-    for i in range(years):
+    periods = int(input('Number of periods (1500): '))
+    for i in range(periods):
         for j in range(periodFractions):
             t.append(t[-1] + (period / periodFractions))
             heat_out = epsilon * c.sigma * pow(T[-1], 4)

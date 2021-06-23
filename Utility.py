@@ -1,6 +1,7 @@
 import math
 
 import matplotlib.pyplot as plt
+import numpy as np
 
 import c
 
@@ -70,8 +71,18 @@ def meters_to_au(x):
     return x / 149597870700
 
 
-def solarConstant(R_star, T_star, d_planet):
-    return (4 * math.pi * R_star ** 2 * c.sigma * T_star ** 4) / (4 * math.pi * d_planet ** 2)
+def PowerOutput(T_star):
+    return c.sigma * T_star ** 4
+
+
+def planetInsolation(Power_Output, R_star, d_planet):  # This method takes the Power output of the star as the parameter to produce the insolation
+    insolation = (4 * math.pi * R_star ** 2 * Power_Output) / (4 * math.pi * d_planet)
+    return insolation
+
+
+def solarConstant(T_star, R_star, d_planet):  # This method takes the Temperature of the star as the parameter to produce the insolation
+    insolation = (math.pi * 4 * R_star ** 2 * PowerOutput(T_star)) / (4 * math.pi * d_planet ** 2)
+    return insolation
 
 
 # This is an obsolete method
@@ -88,25 +99,31 @@ def solarConstant(R_star, T_star, d_planet):
 #     return heat_in
 
 
-def generate_heat_in_updated(ke, periodFractions, d_planet, Power_Output, albedo):
+def generate_heat_in_updated(ke, periodFractions, d_planet, planetInsolation, albedo):
     heat_in = []
     period = d_planet ** (3 / 2)
 
     # Generating Heat_in coefficients
     for i in range(0, periodFractions):
         r = ke.radius(i / periodFractions * period)  # Applying Kepler's First Law to find r
-        L = Power_Output / (r / d_planet) ** 2  # Calculating insolation based on distance from star relative to semi major axis
+        L = planetInsolation / (r / d_planet) ** 2  # Calculating insolation based on distance from star relative to semi major axis
         heat_in.append((L * (1 - albedo)) / 4)
 
     return heat_in
 
 
 def generateEccentricityList(start, end, step):
-    e = [start]
-    while e[-1] < end:
-        e.append(e[-1] + step)
-
+    e = np.arange(start, end, step).tolist()
     return e
+
+
+# this is an obsolete method as a more efficient method was found
+# def generateEccentricityList(start, end, step):
+#     e = [start]
+#     while e[-1] < end:
+#         e.append(e[-1] + step)
+#
+#     return e
 
 
 # No longer in use

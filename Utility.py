@@ -1,4 +1,5 @@
 import math
+import os
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -56,11 +57,17 @@ def addLegend(fig, pos='lower right', title='Extra Lines: '):
 
 
 def savePlot(fig, filePath, fileName, dpi=1000):
-    if input("Would you like to save this figure? (YES/NO): ") == "YES":
+    if input("Would you like to save this figure? (YES/NO): ").upper() == "YES":
+
+        # Checking which fileName is available next in the directory in order to not overwrite existing plots
+        i = 0
+        while os.path.exists(f"{fileName}_{i}.png"):
+            i += 1
+
         # Saving plot locally
-        print('Saving to ' + fileName + '.png')
-        fig.savefig(filePath + fileName + '.png', dpi=dpi)
-        print('Plot saved to ' + fileName + '.png')
+        print("Saving to " + f"{fileName}_{i}.png")
+        fig.savefig(filePath + f"{fileName}_{i}.png", dpi=dpi)
+        print("Plot saved to " + f"{fileName}_{i}.png")
 
 
 def au_to_meters(x):

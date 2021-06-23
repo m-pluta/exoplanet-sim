@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from PyAstronomy import pyasl
 
 import c
-from Utility import addLegend, generate_heat_in_updated
+from Utility import addLegend, generate_heat_in
 from Utility import beautifyPlot
 from Utility import generateEccentricityList
 from Utility import plotCelciusLine
@@ -40,7 +40,7 @@ def zeroD_e_bar(plotTitle):
         steps = int(years / (period / periodFractions))
         tempMin = 1E24
         ke = pyasl.KeplerEllipse(d_planet, period, e, Omega=0., i=0.0, w=0.0)
-        heat_in = generate_heat_in_updated(ke, periodFractions, d_planet, Power_output, albedo)
+        heat_in = generate_heat_in(ke, periodFractions, d_planet, Power_output, albedo)
 
         for i in range(steps):
             heat_out = epsilon * c.sigma * pow(T[-1], 4)

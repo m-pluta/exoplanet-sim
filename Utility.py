@@ -30,7 +30,6 @@ import c
 #
 #     return fig, plt
 
-
 def beautifyPlot(fig, Title, x_axis, y_axis):
     # Adding labels for title and axes
     fig.suptitle(Title, fontsize=14)
@@ -93,7 +92,7 @@ def solarConstant(T_star, R_star, d_planet):  # This method takes the Temperatur
 
 
 # This is an obsolete method
-# def generate_heat_in(e, periodFractions, d_planet, Power_Output, albedo):
+# def generate_heat_in_old(e, periodFractions, d_planet, Power_Output, albedo):
 #     heat_in = []
 #
 #     # Generating Heat_in coefficients
@@ -106,7 +105,7 @@ def solarConstant(T_star, R_star, d_planet):  # This method takes the Temperatur
 #     return heat_in
 
 
-def generate_heat_in_updated(ke, periodFractions, d_planet, planetInsolation, albedo):
+def generate_heat_in(ke, periodFractions, d_planet, planetInsolation, albedo):
     heat_in = []
     period = d_planet ** (3 / 2)
 

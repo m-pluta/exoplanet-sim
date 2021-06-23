@@ -23,7 +23,7 @@ def zeroD_e(plotTitle):
     T = [0]
 
     ke = pyasl.KeplerEllipse(d_planet, period, e, Omega=0., i=0.0, w=0.0)
-    heat_in = generate_heat_in_updated(ke, periodFractions, d_planet, solar_Constant, albedo)
+    heat_in = generate_heat_in(ke, periodFractions, d_planet, solar_Constant, albedo)
     # print(*heat_in, sep="\n") <- Used for debugging
 
     # Generating Surface Temperature Data

@@ -16,9 +16,9 @@ def zeroD_e_bar(plotTitle):
     # Global Initialisation
     heat_capacity = waterDepth * 1000 * 4200  # (J / K m^2)
     period = math.pow(d_planet, 1.5)  # Period of planet's orbit (years)
-    Power_Output = PowerOutput(T_star)  # Power irradiated from the star's surface (W/m^2)
+    Power_Output = PowerOut(T_star)  # Power irradiated from the star's surface (W/m^2)
     solar_Constant = planetInsolation(Power_Output, R_star, d_planet)  # Insolation incident on the planet's surface (W/m^2)
-    eccentricities = generateEccentricityList(0, 1, 0.01)  # List containing all the eccentricities being plotted
+    eccentricities = generateList(0, 1, 0.01)  # List containing all the eccentricities being plotted
     minTemps = []
     maxTemps = []
 
@@ -33,7 +33,7 @@ def zeroD_e_bar(plotTitle):
         heat_in = generate_heat_in(ke, periodFractions, d_planet, solar_Constant, albedo)
         for k in range(periods):
             for i in range(periodFractions):
-                heat_out = epsilon * c.sigma * pow(T[-1], 4)
+                heat_out = epsilon * PowerOut(T[-1])
 
                 heat_content += (heat_in[i] - heat_out) * (period / periodFractions * c.SiY)
                 T.append(heat_content / heat_capacity)  # (K)

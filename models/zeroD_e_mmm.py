@@ -6,7 +6,7 @@ from PyAstronomy import pyasl
 import c
 from Utility import addLegend, generate_heat_in
 from Utility import beautifyPlot
-from Utility import generateEccentricityList
+from Utility import generateList
 from Utility import plotCelciusLine
 from Utility import solarConstant
 
@@ -27,7 +27,7 @@ def zeroD_e_mmm(plotTitle):
     period = math.pow(d_planet, 1.5)  # Period of planet's orbit (years)
     Power_output = solarConstant(T_star, R_star, d_planet)  # incidentPower from star (W)
 
-    eccentricities = generateEccentricityList(0, 0.99, 0.01)
+    eccentricities = generateList(0, 0.99, 0.01)
     mins = []
     means = []
     maxs = []

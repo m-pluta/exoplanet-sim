@@ -77,8 +77,8 @@ def meters_to_au(x):
     return x / 149597870700
 
 
-def PowerOutput(T_star):
-    return c.sigma * T_star ** 4
+def PowerOut(T_body):
+    return c.sigma * T_body ** 4
 
 
 def planetInsolation(Power_Output, R_star, d_planet):  # This method takes the Power output of the star as the parameter to produce the insolation
@@ -87,7 +87,7 @@ def planetInsolation(Power_Output, R_star, d_planet):  # This method takes the P
 
 
 def solarConstant(T_star, R_star, d_planet):  # This method takes the Temperature of the star as the parameter to produce the insolation
-    insolation = (math.pi * 4 * R_star ** 2 * PowerOutput(T_star)) / (4 * math.pi * d_planet ** 2)
+    insolation = (math.pi * 4 * R_star ** 2 * PowerOut(T_star)) / (4 * math.pi * d_planet ** 2)
     return insolation
 
 
@@ -118,7 +118,7 @@ def generate_heat_in(ke, periodFractions, d_planet, planetInsolation, albedo):
     return heat_in
 
 
-def generateEccentricityList(start, end, step):  # from start (inclusive) to end (exclusive)
+def generateList(start, end, step):  # from start (inclusive) to end (exclusive)
     e = np.arange(start, end, step).tolist()
     return e
 

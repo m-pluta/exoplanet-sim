@@ -14,7 +14,7 @@ def zeroD_EBM(plotTitle):
     # Initialisation
     heat_capacity = waterDepth * 1000 * 4200  # (J / K m^2)
     period = math.pow(d_planet, 1.5)  # Period of planet's orbit (years)
-    Power_output = PowerOutput(T_star)  # Power output of star (Watts/m^2)
+    Power_output = PowerOut(T_star)  # Power output of star (Watts/m^2)
     solar_Constant = planetInsolation(Power_output, R_star, d_planet)
     heat_in = (solar_Constant * (1 - albedo)) / 4  # Watts/m^2
     t = [0]
@@ -26,7 +26,7 @@ def zeroD_EBM(plotTitle):
     for i in range(periods):
         for j in range(periodFractions):
             t.append(t[-1] + period / periodFractions)
-            heat_out = epsilon * c.sigma * T[-1] ** 4
+            heat_out = epsilon * PowerOut(T[-1])
             heat_content += (heat_in - heat_out) * (period / periodFractions) * c.SiY
             T.append(heat_content / heat_capacity)  # (K)
 

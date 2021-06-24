@@ -11,14 +11,14 @@ def zeroD_e_bar(plotTitle):
     R_star = c.R_Sun  # Radius of star (AU)
     d_planet = c.d_Earth  # Distance of planet from body it is orbiting  (AU)
     T_star = c.T_Sun  # Surface Temperature of star (K)
-    periodFractions = 10  # number of fractions of period
+    periodFractions = 100  # number of fractions of period
 
     # Global Initialisation
     heat_capacity = waterDepth * 1000 * 4200  # (J / K m^2)
     period = math.pow(d_planet, 1.5)  # Period of planet's orbit (years)
     Power_Output = PowerOut(T_star)  # Power irradiated from the star's surface (W/m^2)
     solar_Constant = planetInsolation(Power_Output, R_star, d_planet)  # Insolation incident on the planet's surface (W/m^2)
-    eccentricities = generateList(0, 1, 0.01)  # List containing all the eccentricities being plotted
+    eccentricities = generateList(0, 0.95, 0.01)  # List containing all the eccentricities being plotted
     minTemps = []
     maxTemps = []
 

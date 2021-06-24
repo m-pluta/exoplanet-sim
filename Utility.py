@@ -118,7 +118,7 @@ def generate_heat_in(ke, periodFractions, d_planet, planetInsolation, albedo):
     return heat_in
 
 
-def generateEccentricityList(start, end, step):
+def generateEccentricityList(start, end, step):  # from start (inclusive) to end (exclusive)
     e = np.arange(start, end, step).tolist()
     return e
 

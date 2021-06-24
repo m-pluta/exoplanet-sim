@@ -13,7 +13,7 @@ def latitude_stepping_GHE(plotTitle):
     T_star = c.T_Sun  # Surface Temperature of star (K)
     albedo = c.albedo_Earth
     epsilonS = 0.7
-    epsilonA = c.epsilonA_Earth
+    epsilonA = c.epsilonAtmosphere_Earth
     timeStep = 1  # years
     waterDepth = 4000  # m
     latitudeWidth = 0.5  # degrees

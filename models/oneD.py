@@ -14,7 +14,7 @@ def oneD(plotTitle):
     d_planet = c.d_Earth  # Distance of planet from body it is orbiting  (AU)
     T_star = c.T_Sun  # Surface Temperature of star (K)
     albedo = c.albedo_Earth
-    epsilon = c.epsilonS_Earth
+    epsilon = c.epsilonSurface_Earth
     latitudeWidth = 10  # degrees
 
     # Initialisation

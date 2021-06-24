@@ -13,8 +13,8 @@ def zeroD_GHE(plotTitle):
     waterDepth = 4000  # metres
     L = solarConstant(c.T_Sun, c.R_Sun, c.d_Earth)
     albedo = c.albedo_Earth
-    epsilonS = c.epsilonS_Earth
-    epsilonA = c.epsilonA_Earth
+    epsilonS = c.epsilonSurface_Earth
+    epsilonA = c.epsilonAtmosphere_Earth
 
     # Declaring variables and initialisation
     heatCapacity = waterDepth * 4.2E6  # JK/m^2

@@ -12,8 +12,8 @@ def oneD_GHE(plotTitle):
     d_planet = c.d_Earth  # Distance of planet from body it is orbiting  (AU)
     T_star = c.T_Sun  # Surface Temperature of star (K)
     albedo = c.albedo_Earth
-    epsilonS = c.epsilonS_Earth
-    epsilonA = c.epsilonA_Earth
+    epsilonS = c.epsilonSurface_Earth
+    epsilonA = c.epsilonAtmosphere_Earth
     timeStep = 0.1  # years
     waterDepth = 4000  # m
     latitudeWidth = 10  # degrees

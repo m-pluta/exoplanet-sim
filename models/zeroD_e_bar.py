@@ -18,7 +18,7 @@ def zeroD_e_bar(plotTitle):
     period = math.pow(d_planet, 1.5)  # Period of planet's orbit (years)
     Power_Output = PowerOut(T_star)  # Power irradiated from the star's surface (W/m^2)
     solar_Constant = planetInsolation(Power_Output, R_star, d_planet)  # Insolation incident on the planet's surface (W/m^2)
-    eccentricities = generateList(0, 0.95, 0.01)  # List containing all the eccentricities being plotted
+    eccentricities = generateList(0, 1, 0.01)  # List containing all the eccentricities being plotted
     minTemps = []
     maxTemps = []
 

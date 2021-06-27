@@ -1,41 +1,43 @@
-import matplotlib.pyplot as plt
-
-import c
-from Utility import addLegend
-from Utility import beautifyPlot
-from Utility import plotCelciusLine
-from Utility import solarConstant
+from Utility import *
 
 
 def zeroD_GHE(plotTitle):
     # Independent Variables
-    timeStep = 0.1  # years
-    waterDepth = 4000  # metres
-    L = solarConstant(c.T_Sun, c.R_Sun, c.d_Earth)
-    albedo = c.albedo_Earth
-    epsilonS = c.epsilonSurface_Earth
-    epsilonA = c.epsilonAtmosphere_Earth
+    waterDepth = 4000  # (m)
+    albedo = c.albedo_Earth  # how much light gets reflected by atmosphere
+    epsilonS = c.epsilonSurface_Earth  # how good of a blackbody the surface of the Earth is
+    epsilonA = c.epsilonAtmosphere_Earth  # how good of a blackbody the Atmosphere is
+    R_star = c.R_Sun  # Radius of star (AU)
+    d_planet = c.d_Earth  # Distance of planet from body it is orbiting  (AU)
+    T_star = c.T_Sun  # Surface Temperature of star (K)
+    periodFractions = 1000  # number of fractions of period
 
-    # Declaring variables and initialisation
-    heatCapacity = waterDepth * 4.2E6  # JK/m^2
-    heat_in = L * (1 - albedo) / 4  # W/m^2
+    # Initialisation
+    heat_capacity = waterDepth * 1000 * 4200  # (J / K m^2)
+    period = math.pow(d_planet, 1.5)  # Period of planet's orbit (years)
+    Power_output = PowerOut(T_star)  # Power output of star (Watts/m^2)
+    solar_Constant = planetInsolation(Power_output, R_star, d_planet)
+    heat_in = (solar_Constant * (1 - albedo)) / 4  # Watts/m^2
     t = [0]
-    T = [0]  # K
+    T = [0]
     net_heat = heat_in
 
+    # Generating data
     heatContent = 0  # J/m^2
-    years = int(input('Number of years (1500): '))
-    for i in range(int(years / timeStep)):
-        # tempA = ((epsilonS*sigma*T[-1]**4-(1-epsilonA)*epsilonS*sigma*T[-1]**4)/(2*sigma*epsilonA))**0.25
-        temp_atmosphere = (0.5 * epsilonS * (T[-1] ** 4)) ** 0.25  # Simplified equation
+    periods = int(input('Number of periods (2000): '))
+    for k in range(periods):
+        for i in range(periodFractions):
+            t.append(t[-1] + period / periodFractions)
 
-        heatContent += net_heat * c.SiY * timeStep
-        T.append(heatContent / heatCapacity)
+            # tempA = ((epsilonS*sigma*T[-1]**4-(1-epsilonA)*epsilonS*sigma*T[-1]**4)/(2*sigma*epsilonA))**0.25
+            temp_atmosphere = (0.5 * epsilonS * (T[-1] ** 4)) ** 0.25  # Simplified equation
 
-        heat_out = (1 - epsilonA) * (epsilonS * c.sigma * T[-1] ** 4) + (epsilonA * c.sigma * temp_atmosphere ** 4)
-        net_heat = heat_in - heat_out
+            heatContent += net_heat * (period / periodFractions) * c.SiY
+            T.append(heatContent / heat_capacity)
 
-        t.append(t[-1] + timeStep)
+            # heat_out = (1 - epsilonA) * (epsilonS * c.sigma * T[-1] ** 4) + (epsilonA * c.sigma * temp_atmosphere ** 4)
+            heat_out = (1 - epsilonA) * (epsilonS * PowerOut(T[-1])) + (epsilonA * PowerOut(temp_atmosphere))
+            net_heat = heat_in - heat_out
 
     # Plotting data
     fig = plt.figure(plotTitle)

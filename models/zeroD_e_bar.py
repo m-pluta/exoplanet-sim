@@ -5,13 +5,13 @@ from Utility import *
 
 def zeroD_e_bar(plotTitle):
     # Independent Variables
-    waterDepth = 800  # (m)
+    waterDepth = 4000  # (m)
     albedo = c.albedo_Earth  # how much light gets reflected by atmosphere (0-1)
     epsilon = c.epsilonSurface_Earth  # how good of a blackbody the body is (0-1)
     R_star = c.R_Sun  # Radius of star (AU)
     d_planet = c.d_Earth  # Distance of planet from body it is orbiting  (AU)
     T_star = c.T_Sun  # Surface Temperature of star (K)
-    periodFractions = 100  # number of fractions of period
+    periodFractions = 365  # number of fractions of period
 
     # Global Initialisation
     heat_capacity = waterDepth * 1000 * 4200  # (J / K m^2)
@@ -27,7 +27,7 @@ def zeroD_e_bar(plotTitle):
         # Initialisation
         T = [0]
         heat_content = heat_capacity * T[0]  # (J / m^2)
-        periods = 250
+        periods = 1000
         tempMin = 1E24
         ke = pyasl.KeplerEllipse(d_planet, period, e, Omega=0., i=0.0, w=0.0)
         heat_in = generate_heat_in(ke, periodFractions, d_planet, solar_Constant, albedo)
@@ -40,7 +40,7 @@ def zeroD_e_bar(plotTitle):
                 if periods - k < 20:  # Only keeps track of minimum temperatures for the last 20 periods in EBM
                     if T[-1] < tempMin:
                         tempMin = T[-1]  # Keeping track of the minimum temperature
-
+        print(str(round(e, 2)))
         minTemps.append(tempMin)
         maxTemps.append(max(T))
 

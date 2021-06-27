@@ -7,7 +7,7 @@ def zeroD_EBM(plotTitle):
     albedo = c.albedo_Earth  # how much light gets reflected by atmosphere
     epsilon = c.epsilonSurface_Earth  # how good of a blackbody the body is
     R_star = c.R_Sun  # Radius of star (AU)
-    d_planet = c.d_Earth * 4  # Distance of planet from body it is orbiting  (AU)
+    d_planet = c.d_Earth  # Distance of planet from body it is orbiting  (AU)
     T_star = c.T_Sun  # Surface Temperature of star (K)
     periodFractions = 1000  # number of fractions of period
 
@@ -22,7 +22,7 @@ def zeroD_EBM(plotTitle):
 
     # Generating Data
     heat_content = heat_capacity * T[0]  # (J / m^2)
-    periods = int(input('Number of periods (1000): '))
+    periods = int(input('Number of periods (1500): '))
     for i in range(periods):
         for j in range(periodFractions):
             t.append(t[-1] + period / periodFractions)

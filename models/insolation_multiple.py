@@ -1,4 +1,3 @@
-from Utility import addLegend
 from models.insolation_single import *
 
 

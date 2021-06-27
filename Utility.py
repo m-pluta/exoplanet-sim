@@ -92,7 +92,7 @@ def solarConstant(T_star, R_star, d_planet):
     return insolation
 
 
-# This function calculates the incoming heat from a star that passes through the atmosphere successfully
+# This function calculates the incoming heat flux that passes through the atmosphere successfully
 # By this I mean, all the energy that is not reflected by the atmosphere.
 # This function splits the period into equally sized sections (periodFractions) which will act as timesteps.
 # It calculates the the insolation accurately by using the provided Keplerian Ellipse.

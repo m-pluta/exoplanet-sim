@@ -7,29 +7,10 @@ import numpy as np
 import c
 
 
-# def plotGraph(t, T, Title, x_axis, y_axis, celciusLine):
-#     fig = plt.figure(Title)
-#     plt.plot(t, T, c='r', linewidth=1.75)
-#
-#     if celciusLine == 'true':
-#         plt.plot([t[0], t[-1]], [273.15, 273.15], c='c', label='0°C', lw='1.25', linestyle='dashed')
-#
-#         plt.legend(loc="lower right", title='Extra lines:', framealpha=1.0)
-#
-#     plt.annotate(str(round(T[-1], 3)), (t[-1], T[-1]), xycoords='data', xytext=(t[-1] - 125, T[-1] - 20))
-#
-#     # Adding labels for title and axes
-#     fig.suptitle(Title, fontsize=12)
-#     plt.xlabel(x_axis, fontsize=9)
-#     plt.ylabel(y_axis, fontsize=9)
-#     plt.minorticks_on()  # minor ticks
-#
-#     # Drawing major & minor gridlines
-#     plt.grid(b=True, which='major', color='black', linestyle='-', linewidth=0.5)
-#     plt.grid(b=True, which='minor', color='grey', linestyle=':', linewidth=0.2)
-#
-#     return fig, plt
-
+# This function is used to make the plot look more professional by adding a Title to the figure
+# as well as labels for the x and y axes.
+# It also adds minor ticks to each of the axes to make reading values of the plots easier
+# It also modifies the thickness of all the grid lines
 def beautifyPlot(fig, Title, x_axis, y_axis):
     # Adding labels for title and axes
     fig.suptitle(Title, fontsize=14)
@@ -40,21 +21,31 @@ def beautifyPlot(fig, Title, x_axis, y_axis):
     # Drawing major & minor gridlines
     plt.grid(b=True, which='major', color='black', linestyle='-', linewidth=0.5)
     plt.grid(b=True, which='minor', color='grey', linestyle=':', linewidth=0.2)
-
     return fig
 
 
+# This function plot the horizontal line for 0°C so it is easier to gauge if a temperature
+# would be habitable for humans
+# It does this by plotting a horizontal line at 273.15°K between two x co-ordinates
+# It also adds a legend to plot so it is possible to identify the 0°C line
 def plotCelciusLine(fig, t1, t2):
     plt.plot([t1, t2], [273.15, 273.15], c='c', label='0°C', lw='1.25', linestyle='dashed')
     plt.legend(loc="lower right", title='Extra lines:', framealpha=1.0)
     return fig
 
 
+# This function adds a legend to the figure at a specified position and with a given title
+# The legend is also given an alpha value of 1.0 to make sure it not transparent as it is
+# harder to read from a transparent legend.
 def addLegend(fig, pos='lower right', title='Extra Lines: '):
     plt.legend(loc=pos, title=title, framealpha=1.0)
     return fig
 
 
+# This method saves the figure with a given file name at a specific filepath.
+# The dpi (dots-per-inch) determines how detailed the final saved image will be.
+# The method also ensures that a plot is not saved with a name that already exists,
+# If this were to happen then the first image would be overwritten
 def savePlot(fig, filePath, fileName, dpi=1000):
     if input("Would you like to save this figure? (YES/NO): ").upper() == "YES":
 
@@ -69,42 +60,42 @@ def savePlot(fig, filePath, fileName, dpi=1000):
         print("Plot saved to " + f"{fileName}_{i}.png")
 
 
+# This function converts between Astronomical Units and meters
 def au_to_meters(x):
     return 149597870700 * x
 
 
+# This function converts between meters and Astronomical Units
 def meters_to_au(x):
     return x / 149597870700
 
 
+# This function calculates the black-body radiant emittance
+# This is how much energy per square metre (J/m^2) is radiated of a given body with a
+# certain temperature
+# More information: https://en.wikipedia.org/wiki/Stefan%E2%80%93Boltzmann_law
 def PowerOut(T_body):
     return c.sigma * T_body ** 4
 
 
-def planetInsolation(Power_Output, R_star, d_planet):  # This method takes the Power output of the star as the parameter to produce the insolation
+# This function calculates the planet's surface insolation by calculating the total energy radiated
+# from the sun's surface and dividing it by the surface area the given planet
+# More information: https://scied.ucar.edu/earth-system/planetary-energy-balance-temperature-calculate
+def planetInsolation(Power_Output, R_star, d_planet):
     insolation = (4 * math.pi * R_star ** 2 * Power_Output) / (4 * math.pi * d_planet)
     return insolation
 
 
-def solarConstant(T_star, R_star, d_planet):  # This method takes the Temperature of the star as the parameter to produce the insolation
-    insolation = (math.pi * 4 * R_star ** 2 * PowerOut(T_star)) / (4 * math.pi * d_planet ** 2)
+# This function does the same thing as planetInsolation() but instead takes the Temperature of the star as a parameter
+def solarConstant(T_star, R_star, d_planet):
+    insolation = (4 * math.pi * R_star ** 2 * PowerOut(T_star)) / (4 * math.pi * d_planet ** 2)
     return insolation
 
 
-# This is an obsolete method
-# def generate_heat_in_old(e, periodFractions, d_planet, Power_Output, albedo):
-#     heat_in = []
-#
-#     # Generating Heat_in coefficients
-#     for i in range(0, periodFractions):
-#         theta = (i / periodFractions) * 2 * math.pi  # Calculating angle in orbit
-#         r = distance_of_planet_to_star(theta, d_planet, e)  # Applying Kepler's First Law to find r
-#         L = Power_Output / (r / d_planet) ** 2  # Calculating insolation based on distance from star relative to semi major axis
-#         heat_in.append((L * (1 - albedo)) / 4)
-#
-#     return heat_in
-
-
+# This function calculates the incoming heat from a star that passes through the atmosphere successfully
+# By this I mean, all the energy that is not reflected by the atmosphere.
+# This function splits the period into equally sized sections (periodFractions) which will act as timesteps.
+# It calculates the the insolation accurately by using the provided Keplerian Ellipse.
 def generate_heat_in(ke, periodFractions, d_planet, planetInsolation, albedo):
     heat_in = []
     period = d_planet ** (3 / 2)
@@ -118,20 +109,13 @@ def generate_heat_in(ke, periodFractions, d_planet, planetInsolation, albedo):
     return heat_in
 
 
-def generateList(start, end, step):  # from start (inclusive) to end (exclusive)
+# This method uses NumPy to create a list from a starting number (inclusive) to the ending number
+# (exclusive) by stepping through all the numbers in between
+def generateList(start, end, step):
     e = np.arange(start, end, step).tolist()
     return e
 
 
-# this is an obsolete method as a more efficient method was found
-# def generateEccentricityList(start, end, step):
-#     e = [start]
-#     while e[-1] < end:
-#         e.append(e[-1] + step)
-#
-#     return e
-
-
-# No longer in use
+# Obsolete method
 def distance_of_planet_to_star(angle, semi_major_axis, e):
     return (semi_major_axis * (1 - e ** 2)) / (1 + e * math.cos(angle))

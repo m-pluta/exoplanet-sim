@@ -30,7 +30,7 @@ def beautifyPlot(fig, Title, x_axis, y_axis):
 # It also adds a legend to plot so it is possible to identify the 0°C line
 def plotCelciusLine(fig, t1, t2):
     plt.plot([t1, t2], [273.15, 273.15], c='c', label='0°C', lw='1.25', linestyle='dashed')
-    plt.legend(loc="lower right", title='Extra lines:', framealpha=1.0)
+    fig = addLegend(fig, 'lower right', 'Extra lines:')
     return fig
 
 

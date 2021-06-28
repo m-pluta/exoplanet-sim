@@ -8,20 +8,21 @@ from Utility import beautifyPlot, plotCelciusLine, addLegend, solarConstant
 
 def latitude_stepping_GHE(plotTitle):
     # Independent Variables
+    waterDepth = 4000  # m
     R_star = c.R_Sun  # Radius of star (AU)
     d_planet = c.d_Earth  # Distance of planet from body it is orbiting  (AU)
     T_star = c.T_Sun  # Surface Temperature of star (K)
     albedo = c.albedo_Earth
-    epsilonS = 0.7
+    epsilonS = c.epsilonSurface_Earth
     epsilonA = c.epsilonAtmosphere_Earth
-    timeStep = 1  # years
-    waterDepth = 4000  # m
-    latitudeWidth = 0.5  # degrees
+    periodFractions = 1
+    latitudeWidth = 1  # degrees
+    StartingTemperature = int(input('Starting Temperature (K): '))  # Arbitrary value
 
     # Initialisation
+    period = math.pow(d_planet, 1.5)  # Period of planet's orbit (years)
     heatCapacity = waterDepth * 4.2E6  # J/K/m^2
     L = solarConstant(T_star, R_star, d_planet)  # W/m^2
-    t = [0]
     latitudes = []
 
     l = []
@@ -37,33 +38,31 @@ def latitude_stepping_GHE(plotTitle):
         ratio = (math.sin(math.radians((i + latitudeWidth) / factor)) - math.sin(math.radians(i / factor))) / (((latitudeWidth / factor) / 360) * 2 * math.pi)
         # Creates a dictionary element for each latitude
         latitudes.append(
-            {'lat': (i / factor, (i + latitudeWidth) / factor), 'tempList': [0.0], 'heatContent': 0, 'albedo': albedo,
+            {'lat': (i / factor, (i + latitudeWidth) / factor), 'tempList': [StartingTemperature], 'heatContent': StartingTemperature * heatCapacity, 'albedo': albedo,
              'ratio': ratio})
         l.append(i / factor)
 
-    years = 1000000  # Arbitrary value - the value of this doesnt actually matter too much
-    iceAlbedoThreshold = 223.15  # Minimum temp for ice properties to start changing
+    periods = 10000  # Arbitrary value - the value of this doesnt actually matter too much
 
     for lat in latitudes:
         addedTemp = False
-        for i in range(int(years / timeStep)):
-            lat['albedo'] = smoothAlbedo(lat['tempList'][-1], iceAlbedoThreshold, 273.15, albedo, 0.7)  # Linear interpolation
+        for i in range(periods * periodFractions):
+            lat['albedo'] = smoothAlbedo_linear(lat['tempList'][-1])  # Linear interpolation
 
             temp_atmosphere = (0.5 * epsilonS * lat['tempList'][-1] ** 4) ** 0.25  # Temp of atmosphere assuming energy balance
             heat_in = (L * (1 - lat['albedo'])) / 4 * lat['ratio']  # W/m^2
             heat_out = (1 - epsilonA) * epsilonS * c.sigma * (lat['tempList'][-1] ** 4) + epsilonA * c.sigma * temp_atmosphere ** 4
             net_heat = heat_in - heat_out
-            lat['heatContent'] += net_heat * c.SiY * timeStep
+            lat['heatContent'] += net_heat * (period / periodFractions) * c.SiY
             lat['tempList'].append(lat['heatContent'] / heatCapacity)
             if len(lat['tempList']) > 2 and lat['tempList'][-2] != 0:
                 if (lat['tempList'][-1] - lat['tempList'][-2]) / lat['tempList'][-2] < 1E-20:  # Check if recent temp has changed a lot since the previous one.
                     T.append(lat['tempList'][-1])
                     addedTemp = True
-                    if (len(T) % (len(latitudes) / 20) == 0):
-                        print(str(round(len(T) / len(latitudes) * 100)) + '%')  # Loading Progress
                     break
         if not addedTemp:
             T.append(lat['tempList'][-1])
+        print(lat['lat'])
 
     # Plotting data
     fig = plt.figure(plotTitle)
@@ -77,7 +76,7 @@ def latitude_stepping_GHE(plotTitle):
     return fig
 
 
-def smoothAlbedo(currentTemp, iceAlbedoThreshold=263.15, MinAlbedoTemperature=273.15, minAlbedo=0.3, maxAlbedo=0.7):
+def smoothAlbedo_linear(currentTemp, iceAlbedoThreshold=223.15, MinAlbedoTemperature=273.15, minAlbedo=0.3, maxAlbedo=0.7):
     if currentTemp < iceAlbedoThreshold:
         return maxAlbedo
     elif iceAlbedoThreshold <= currentTemp <= MinAlbedoTemperature:
@@ -85,3 +84,12 @@ def smoothAlbedo(currentTemp, iceAlbedoThreshold=263.15, MinAlbedoTemperature=27
         return maxAlbedo - (maxAlbedo - minAlbedo) * (currentTemp - iceAlbedoThreshold) / (MinAlbedoTemperature - iceAlbedoThreshold)
     else:
         return minAlbedo
+
+
+def smoothAlbedo_quadratic(Temp, T_i=260, T_o=293, alpha_o=0.289, alpha_i=0.7):
+    if Temp <= T_i:
+        return alpha_i
+    elif T_i < Temp < T_o:
+        return alpha_o + (alpha_i - alpha_o) * ((Temp - T_o) ** 2) / ((T_i - T_o) ** 2)
+    else:
+        return alpha_o

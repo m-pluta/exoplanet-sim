@@ -121,8 +121,8 @@ def distance_of_planet_to_star(angle, semi_major_axis, e):
     return (semi_major_axis * (1 - e ** 2)) / (1 + e * math.cos(angle))
 
 
-# Variables
 # This function smoothens out the transition between min and max albedo when the planet is hot/cold enough for water to change physical state
+# Variables
 # {Temp} is the Global Mean Temperature
 # {T_i} is the threshold temperature below which the model assumes the planet is completely ice covered
 # {T_o} is the threshold temperature above which our model assumes the planet is ice-free
@@ -134,5 +134,24 @@ def smoothAlbedo_quadratic(Temp, T_i=260, T_o=293, alpha_o=0.289, alpha_i=0.7):
         return alpha_i
     elif T_i < Temp < T_o:
         return alpha_o + (alpha_i - alpha_o) * ((Temp - T_o) ** 2) / ((T_i - T_o) ** 2)
+    else:
+        return alpha_o
+
+
+# This function performs linear interpolation to transition between min and max albedo
+# This is an okay approximation however the approximation in smoothAlbedo_quadratic is better.
+# Since the other function has been made, this function has become partly obsolete
+# Variables
+# {Temp} is the Global Mean Temperature
+# {T_i} is the threshold temperature below which the model assumes the planet is completely ice covered
+# {T_o} is the threshold temperature above which our model assumes the planet is ice-free
+# {alpha_o} is the albedo of a warm, ice-free planet
+# {alpha_i} is the albedo of a very cold, completely ice-covered planet
+def smoothAlbedo_linear(Temp, T_i=260, T_o=293, alpha_o=0.289, alpha_i=0.7):
+    if Temp < T_i:
+        return alpha_i
+    elif T_i <= Temp <= T_o:
+        # ensures albedo transitions smoothly between min and max Albedo varying with temperature - This is linear interpolation
+        return alpha_i - (alpha_i - alpha_o) * (Temp - T_i) / (T_o - T_i)
     else:
         return alpha_o

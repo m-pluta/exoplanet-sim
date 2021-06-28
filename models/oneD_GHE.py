@@ -57,13 +57,3 @@ def oneD_GHE(plotTitle):
     fig = addLegend(fig, title='Latitudes: ')
 
     return fig
-
-
-def smoothAlbedo_linear(currentTemp, iceAlbedoThreshold=263.15, MinAlbedoTemperature=273.15, minAlbedo=0.3, maxAlbedo=0.7):
-    if currentTemp < iceAlbedoThreshold:
-        return maxAlbedo
-    elif iceAlbedoThreshold <= currentTemp <= MinAlbedoTemperature:
-        # ensures albedo transitions smoothly between 0.7 and 0.3 depending on temperature - this is basically linear interpolation
-        return maxAlbedo - (maxAlbedo - minAlbedo) * (currentTemp - iceAlbedoThreshold) / (MinAlbedoTemperature - iceAlbedoThreshold)
-    else:
-        return minAlbedo

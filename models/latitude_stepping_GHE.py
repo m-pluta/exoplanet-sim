@@ -1,9 +1,4 @@
-import math
-
-import matplotlib.pyplot as plt
-
-import c
-from Utility import beautifyPlot, plotCelciusLine, addLegend, solarConstant
+from Utility import *
 
 
 def latitude_stepping_GHE(plotTitle):
@@ -74,13 +69,3 @@ def latitude_stepping_GHE(plotTitle):
     fig = addLegend(fig)
 
     return fig
-
-
-def smoothAlbedo_linear(currentTemp, iceAlbedoThreshold=223.15, MinAlbedoTemperature=273.15, minAlbedo=0.3, maxAlbedo=0.7):
-    if currentTemp < iceAlbedoThreshold:
-        return maxAlbedo
-    elif iceAlbedoThreshold <= currentTemp <= MinAlbedoTemperature:
-        # ensures albedo transitions smoothly between 0.7 and 0.3 depending on temperature - this is basically linear interpolation
-        return maxAlbedo - (maxAlbedo - minAlbedo) * (currentTemp - iceAlbedoThreshold) / (MinAlbedoTemperature - iceAlbedoThreshold)
-    else:
-        return minAlbedo

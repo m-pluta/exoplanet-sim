@@ -29,19 +29,3 @@ def smoothAlbedo_linear(currentTemp, iceAlbedoThreshold=260, MinAlbedoTemperatur
         return maxAlbedo - (maxAlbedo - minAlbedo) * (currentTemp - iceAlbedoThreshold) / (MinAlbedoTemperature - iceAlbedoThreshold)
     else:
         return minAlbedo
-
-
-# Variables
-# {Temp} is the Global Mean Temperature
-# {T_i} is the threshold temperature below which the model assumes the planet is completely ice covered
-# {T_o} is the threshold temperature above which our model assumes the planet is ice-free
-# {alpha_o} is the albedo of a warm, ice-free planet
-# {alpha_i} is the albedo of a very cold, completely ice-covered planet
-# Source: https://brian-rose.github.io/ClimateLaboratoryBook/courseware/advanced-sensitivity-feedback.html
-def smoothAlbedo_quadratic(Temp, T_i=260, T_o=293, alpha_o=0.289, alpha_i=0.7):
-    if Temp <= T_i:
-        return alpha_i
-    elif T_i < Temp < T_o:
-        return alpha_o + (alpha_i - alpha_o) * ((Temp - T_o) ** 2) / ((T_i - T_o) ** 2)
-    else:
-        return alpha_o

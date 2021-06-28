@@ -84,12 +84,3 @@ def smoothAlbedo_linear(currentTemp, iceAlbedoThreshold=223.15, MinAlbedoTempera
         return maxAlbedo - (maxAlbedo - minAlbedo) * (currentTemp - iceAlbedoThreshold) / (MinAlbedoTemperature - iceAlbedoThreshold)
     else:
         return minAlbedo
-
-
-def smoothAlbedo_quadratic(Temp, T_i=260, T_o=293, alpha_o=0.289, alpha_i=0.7):
-    if Temp <= T_i:
-        return alpha_i
-    elif T_i < Temp < T_o:
-        return alpha_o + (alpha_i - alpha_o) * ((Temp - T_o) ** 2) / ((T_i - T_o) ** 2)
-    else:
-        return alpha_o

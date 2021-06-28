@@ -1,3 +1,4 @@
+from models.albedo_temperature import *
 from models.insolation_multiple import *
 from models.latitude_stepping_GHE import *
 from models.oneD import *
@@ -19,6 +20,7 @@ print("6 - 1D EBM w/ Greenhouse effect")
 print("7 - Solar insolation on Eccentric orbit")
 print("8 - Solar insolation on different eccentric orbits")
 print("9 - Latitude stepping 1D EBM w/ Greenhouse Effect")
+print("10 - Albedo against Temperature")
 selection = int(input())
 
 directory = 'C:\\Users\\Michal\\Desktop\\Remote Lessons\\CREST\\dump\\'
@@ -91,3 +93,10 @@ elif selection == 9:
     fig = latitude_stepping_GHE('Latitude Stepping 1D EBM with GHE')
     plt.show()
     savePlot(fig, directory, 'Latitude Stepping 1D EBM with GHE')
+
+elif selection == 10:
+    print("Albedo against Temperature")
+
+    fig = albedo_temperature('Albedo against Temperature')
+    plt.show()
+    savePlot(fig, directory, 'Albedo against Temperature')

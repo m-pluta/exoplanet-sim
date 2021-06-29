@@ -63,10 +63,3 @@ def latitude_stepping_GHE(plotTitle):
     fig = addLegend(fig)
 
     return fig
-
-
-def InOutRatio(latitude1, latitude2):
-    theta1, theta2 = math.radians(latitude1), math.radians(latitude2)
-    Surface_in = abs(theta1 - theta2 + 0.5 * (math.sin(2 * theta1) - math.sin(2 * theta2)))
-    Surface_out = abs(2 * math.pi * (math.sin(theta1) - math.sin(theta2)))
-    return Surface_in / Surface_out

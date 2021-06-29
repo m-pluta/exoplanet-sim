@@ -20,9 +20,8 @@ def oneD(plotTitle):
     latitudes = []
 
     for i in range(0, 90, latitudeWidth):
-        # Ratio of height of arc (from the view of a cross section of the earth) to the length of the arc
-        # i.e Ratio of Flux in vs Flux out
-        ratio = (math.sin(math.radians(i + latitudeWidth)) - math.sin(math.radians(i))) / ((latitudeWidth / 360) * 2 * math.pi)
+        # Ratio of the area of the 'shadow' cast by the latitude band to the surface of revolution of the arc length of the latitude band
+        ratio = InOutRatio(i, i + latitudeWidth)
         # Creates a dictionary element for each latitude
         latitudes.append({'lat': (i, i + latitudeWidth), 'tempList': [0.0], 'heatContent': 0, 'albedo': albedo, 'ratio': ratio})
 

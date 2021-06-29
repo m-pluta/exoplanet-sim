@@ -155,3 +155,12 @@ def smoothAlbedo_linear(Temp, T_i=260, T_o=293, alpha_o=0.289, alpha_i=0.7):
         return alpha_i - (alpha_i - alpha_o) * (Temp - T_i) / (T_o - T_i)
     else:
         return alpha_o
+
+
+# Ratio of the area of the 'shadow' cast by the latitude band to the surface of revolution of the arc length of the latitude band
+# Add more documentation here
+def InOutRatio(latitude1, latitude2):
+    theta1, theta2 = math.radians(latitude1), math.radians(latitude2)
+    Surface_in = abs(theta1 - theta2 + 0.5 * (math.sin(2 * theta1) - math.sin(2 * theta2)))
+    Surface_out = abs(2 * math.pi * (math.sin(theta1) - math.sin(theta2)))
+    return Surface_in / Surface_out

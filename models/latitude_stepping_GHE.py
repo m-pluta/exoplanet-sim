@@ -23,18 +23,13 @@ def latitude_stepping_GHE(plotTitle):
     latitudes = generateList(-90, 90, latitudeWidth)
     T = []
 
-    # factor = 1  # the factor used to allow <latitudeWidth/fac> increments in latitude
-    # magnitude = math.floor(math.log10(latitudeWidth))
-    # if magnitude < 0:  # Finds magnitude of latitudeWidth and scales for loop parameters so they are all integers depending on the magnitude
-    #     factor = math.pow(10, abs(magnitude))
 
     for l in latitudes:
-        # Ratio of height of arc (from the view of a cross section of the earth) to the length of the arc i.e Ratio of Flux in vs Flux out
-        # ratio = math.sin(math.radians(abs(l) + abs(latitudeWidth))) - math.sin(math.radians(abs(l))) / ((latitudeWidth / 360) * 2 * math.pi)
-        ratio = abs(math.sin(math.radians(abs(l + 1))) - math.sin(math.radians(abs(l)))) / ((latitudeWidth / 360) * 2 * math.pi)
+        # Ratio of the area of the 'shadow' cast by the latitude band to the surface of revolution of the arc length of the latitude band
+        ratio = InOutRatio(l, l + latitudeWidth)
+
         # Creates a dictionary element for each latitude
         latitudeData.append({'lat': (l, (l + latitudeWidth)), 'tempList': [StartingTemperature], 'heatContent': StartingTemperature * heatCapacity, 'albedo': albedo, 'ratio': ratio})
-        print(latitudeData[-1])
 
     periods = 10000  # Arbitrary value
 
@@ -68,3 +63,10 @@ def latitude_stepping_GHE(plotTitle):
     fig = addLegend(fig)
 
     return fig
+
+
+def InOutRatio(latitude1, latitude2):
+    theta1, theta2 = math.radians(latitude1), math.radians(latitude2)
+    Surface_in = abs(theta1 - theta2 + 0.5 * (math.sin(2 * theta1) - math.sin(2 * theta2)))
+    Surface_out = abs(2 * math.pi * (math.sin(theta1) - math.sin(theta2)))
+    return Surface_in / Surface_out

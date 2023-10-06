@@ -1,4 +1,4 @@
-# Eccentric Exoplanet Modelling
+# Exoplanet Modelling
 
 This project is a collection of scripts used to analyse and model exoplanets on eccentric orbits around their stars.
 
